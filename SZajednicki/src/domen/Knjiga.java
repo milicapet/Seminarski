@@ -5,13 +5,15 @@
 package domen;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author milic
  */
-public class Knjiga implements Serializable {
+public class Knjiga implements ApstraktniDomenskiObjekat {
 
     private int sifraKnjige;
     private String naziv;
@@ -63,6 +65,50 @@ public class Knjiga implements Serializable {
     @Override
     public String toString() {
         return "Knjiga{" + "naziv=" + naziv + '}';
+    }
+
+    @Override
+    public String vratiNazivTabele() {
+        return "knjiga";
+    }
+
+    @Override
+    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        while (rs.next()) {
+            int sifraKnjige = rs.getInt("knjiga.sifraKnjige");
+            String naziv = rs.getString("knjiga.naziv");
+            String opis = rs.getString("knjiga.opis");
+
+            Knjiga k = new Knjiga(sifraKnjige, naziv, opis, null);
+            lista.add(k);
+        }
+        return lista;
+    }
+
+    @Override
+    public String vratiKoloneZaUbacivanje() {
+        return "sifraKnjige,naziv,opis";
+    }
+
+    @Override
+    public String vratiVrednostiZaUbacivanje() {
+        return sifraKnjige + ",'" + naziv + "','" + opis + "'";
+    }
+
+    @Override
+    public String vratiPrimarniKljuc() {
+        return "knjiga.sifraKnjige=" + sifraKnjige;
+    }
+
+    @Override
+    public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiVrednostiZaIzmenu() {
+        return "sifraKnjige=" + sifraKnjige + ",naziv='" + naziv + "',opis='" + opis + "'";
     }
 
 }

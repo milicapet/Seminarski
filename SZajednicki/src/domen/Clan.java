@@ -5,12 +5,15 @@
 package domen;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author milic
  */
-public class Clan implements Serializable {
+public class Clan implements ApstraktniDomenskiObjekat {
 
     private int brojClanskeKarte;
     private String ime;
@@ -72,6 +75,53 @@ public class Clan implements Serializable {
     @Override
     public String toString() {
         return "Clan{" + "ime=" + ime + ", prezime=" + prezime + '}';
+    }
+
+    @Override
+    public String vratiNazivTabele() {
+        return "clan";
+    }
+
+    @Override
+    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        while (rs.next()) {
+            int brojClanskeKarte = rs.getInt("clan.brojClanskeKarte");
+            String ime = rs.getString("clan.ime");
+            String prezime = rs.getString("clan.prezime");
+            String adresa = rs.getString("clan.adresa");
+            String brojTelefona = rs.getString("clan.brojTelefona");
+
+            Clan c = new Clan(brojClanskeKarte, ime, prezime, adresa, brojTelefona);
+            lista.add(c);
+        }
+        return lista;
+    }
+
+    @Override
+    public String vratiKoloneZaUbacivanje() {
+        return "brojClanskeKarte,ime,prezime,adresa,brojTelefona";
+    }
+
+    @Override
+    public String vratiVrednostiZaUbacivanje() {
+        return brojClanskeKarte + ",'" + ime + "','" + prezime + "','" + adresa + "','" + brojTelefona + "'";
+    }
+
+    @Override
+    public String vratiPrimarniKljuc() {
+        return "clan.brojClanskeKarte=" + brojClanskeKarte;
+    }
+
+    @Override
+    public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiVrednostiZaIzmenu() {
+        return "brojClanskeKarte=" + brojClanskeKarte + ",ime='" + ime + "',prezime='" + prezime
+                + "',adresa='" + adresa + "',brojTelefona='" + brojTelefona + "'";
     }
 
 }

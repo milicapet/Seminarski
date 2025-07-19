@@ -5,12 +5,14 @@
 package domen;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.List;
 
 /**
  *
  * @author milic
  */
-public class Primerak implements Serializable {
+public class Primerak implements ApstraktniDomenskiObjekat {
 
     private Knjiga knjiga;
     private int sifraPrimerka;
@@ -72,6 +74,42 @@ public class Primerak implements Serializable {
     @Override
     public String toString() {
         return "Primerak{" + "knjiga=" + knjiga + ", brojIzdanja=" + brojIzdanja + ", izdavac=" + izdavac + '}';
+    }
+
+    @Override
+    public String vratiNazivTabele() {
+        return "primerak";
+    }
+
+    @Override
+    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiKoloneZaUbacivanje() {
+        return "sifraKnjige,sifraPrimerka,godinaIzdanja,brojIzdanja,sifraIzdavaca";
+    }
+
+    @Override
+    public String vratiVrednostiZaUbacivanje() {
+        return knjiga.getSifraKnjige() + "," + sifraPrimerka + "," + godinaIzdanja + "," + brojIzdanja + "," + izdavac.getSifraIzdavaca();
+    }
+
+    @Override
+    public String vratiPrimarniKljuc() {
+        return "primerak.sifraKnjige=" + knjiga.getSifraKnjige() + " AND primerak.sifraPrimerka=" + sifraPrimerka;
+    }
+
+    @Override
+    public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiVrednostiZaIzmenu() {
+        return "sifraKnjige=" + knjiga.getSifraKnjige() + ",sifraPrimerka=" + sifraPrimerka + ",godinaIzdanja="
+                + godinaIzdanja + ",brojIzdanja=" + brojIzdanja + ",sifraIzdavaca=" + izdavac.getSifraIzdavaca();
     }
 
 }
