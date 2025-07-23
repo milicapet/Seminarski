@@ -19,7 +19,7 @@ public class Posiljalac {
         this.socket = socket;
     }
 
-    public void posaljiZahtev(Object obj) {
+    public void posaljiOdgovor(Object obj) {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             oos.writeObject(obj);

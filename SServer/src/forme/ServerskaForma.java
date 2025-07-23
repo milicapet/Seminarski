@@ -4,14 +4,18 @@
  */
 package forme;
 
-import niti.OsveziNit;
-import niti.PokreniServer;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import server.Server;
 
 /**
  *
  * @author milic
  */
 public class ServerskaForma extends javax.swing.JFrame {
+    
+    Server server;
 
     /**
      * Creates new form ServerskaForma
@@ -19,9 +23,10 @@ public class ServerskaForma extends javax.swing.JFrame {
     public ServerskaForma() {
         initComponents();
         setLocationRelativeTo(null);
-        OsveziNit on = new OsveziNit(this);
-        on.start();
-
+        server = new Server();
+        jLabelStatus.setText("");
+        jButtonZAUSTAVI.setEnabled(false);
+        
     }
 
     /**
@@ -33,64 +38,124 @@ public class ServerskaForma extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonPOKRENI = new javax.swing.JButton();
+        jButtonZAUSTAVI = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabelStatus = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButtonPOKRENI.setText("Pokreni server");
+        jButtonPOKRENI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPOKRENIActionPerformed(evt);
+            }
+        });
+
+        jButtonZAUSTAVI.setText("Zaustavi server");
+        jButtonZAUSTAVI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonZAUSTAVIActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Status: ");
+
+        jLabelStatus.setText("jLabel2");
+
+        jMenu1.setText("KONFIGURACIJA");
+
+        jMenuItem1.setText("baza");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("port");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(jButtonPOKRENI)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
+                .addComponent(jButtonZAUSTAVI)
+                .addGap(100, 100, 100))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(242, 242, 242)
+                .addComponent(jLabel1)
+                .addGap(69, 69, 69)
+                .addComponent(jLabelStatus)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(174, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabelStatus))
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonPOKRENI, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonZAUSTAVI, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(106, 106, 106))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ServerskaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ServerskaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ServerskaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ServerskaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        FormaKonfiguracijaBaza fk = new FormaKonfiguracijaBaza(this, true);
+        fk.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ServerskaForma().setVisible(true);
-                PokreniServer ps = new PokreniServer();
-                ps.start();
-            }
-        });
-    }
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        FormaKonfiguracijaPort fk = new FormaKonfiguracijaPort(this, true);
+        fk.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    public void izvrsiUpit() {
-        System.out.println("nit");
+    private void jButtonPOKRENIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPOKRENIActionPerformed
+        server.start();
+        jLabelStatus.setText("Pokrenut");
+        jButtonZAUSTAVI.setEnabled(true);
+        jButtonPOKRENI.setEnabled(false);
+    }//GEN-LAST:event_jButtonPOKRENIActionPerformed
 
-    }
+    private void jButtonZAUSTAVIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZAUSTAVIActionPerformed
+        server.zaustaviServer();
+        jLabelStatus.setText("Zaustavljen");
+        jButtonZAUSTAVI.setEnabled(false);
+        jButtonPOKRENI.setEnabled(true);
+    }//GEN-LAST:event_jButtonZAUSTAVIActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonPOKRENI;
+    private javax.swing.JButton jButtonZAUSTAVI;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelStatus;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }

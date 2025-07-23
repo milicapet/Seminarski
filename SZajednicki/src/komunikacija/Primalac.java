@@ -18,7 +18,7 @@ public class Primalac {
         this.socket = socket;
     }
 
-    public Object primiOdgovor() {
+    public Object primiZahtev() {
         try {
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             return ois.readObject();
