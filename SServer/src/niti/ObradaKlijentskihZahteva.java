@@ -4,22 +4,7 @@
  */
 package niti;
 
-import domen.Autor;
-import domen.Bibliotekar;
-import domen.Clan;
-import domen.Izdavac;
-import domen.Knjiga;
-import domen.Primerak;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import komunikacija.Operacije;
-import logika.Kontroler;
 import komunikacija.Zahtev;
 import komunikacija.Odgovor;
 import komunikacija.Posiljalac;
