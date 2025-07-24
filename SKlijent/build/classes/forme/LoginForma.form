@@ -33,13 +33,13 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtKorisnickoIme" max="32767" attributes="0"/>
-                          <Component id="txtSifra" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="jTextFieldKorisnickoIme" max="32767" attributes="0"/>
+                          <Component id="jPasswordField1" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
-                      <Component id="btnPrijava" min="-2" pref="184" max="-2" attributes="0"/>
+                      <Component id="jButtonPrijava" min="-2" pref="184" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
@@ -52,15 +52,15 @@
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtKorisnickoIme" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldKorisnickoIme" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtSifra" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPasswordField1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="41" max="32767" attributes="0"/>
-              <Component id="btnPrijava" min="-2" max="-2" attributes="0"/>
+              <Component id="jButtonPrijava" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -69,30 +69,30 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Korisnicko ime:"/>
+        <Property name="text" type="java.lang.String" value="Korisni&#x10d;ko ime:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Sifra:"/>
+        <Property name="text" type="java.lang.String" value="&#x160;ifra:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtKorisnickoIme">
+    <Component class="javax.swing.JTextField" name="jTextFieldKorisnickoIme">
       <Properties>
-        <Property name="text" type="java.lang.String" value="milica"/>
+        <Property name="text" type="java.lang.String" value="milicapet"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="txtSifra">
+    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="milica"/>
+        <Property name="text" type="java.lang.String" value="milicapet"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnPrijava">
+    <Component class="javax.swing.JButton" name="jButtonPrijava">
       <Properties>
         <Property name="text" type="java.lang.String" value="Prijava"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrijavaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPrijavaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -4,9 +4,14 @@
  */
 package niti;
 
+import controller.Controller;
+import domen.Bibliotekar;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import komunikacija.Zahtev;
 import komunikacija.Odgovor;
+import komunikacija.Operacije;
 import komunikacija.Posiljalac;
 import komunikacija.Primalac;
 
@@ -19,7 +24,6 @@ public class ObradaKlijentskihZahteva extends Thread {
     Socket socket;
     Posiljalac posiljalac;
     Primalac primalac;
-    
 
     public ObradaKlijentskihZahteva(Socket socket) {
         this.socket = socket;
@@ -29,21 +33,18 @@ public class ObradaKlijentskihZahteva extends Thread {
 
     @Override
     public void run() {
-
         while (true) {
+            try {
+                Zahtev zahtev = (Zahtev) primalac.primi();
+                Odgovor odgovor = new Odgovor();
+                switch (zahtev.getOperacija()) {
+                    case Operacije.LOGIN:
+                        Bibliotekar b = (Bibliotekar) zahtev.getParametar();
+                        b = Controller.getInstance().login(b);
+                        odgovor.setOdgovor(b);
+                        break;
 
-            Zahtev zahtev = (Zahtev) primalac.primiZahtev();
-            Odgovor odgovor = new Odgovor();
-
-            switch (zahtev.getOperacija()) {
-                /*case Operacije.LOGIN:
-                    HashMap<Integer, String> mapa = (HashMap<Integer, String>) kz.getParametar();
-                    String korisnickoIme = mapa.get(1);
-                    String sifra = mapa.get(2);
-                    Bibliotekar bibliotekar = Kontroler.getInstance().login(korisnickoIme, sifra);
-                    so.setOdgovor(bibliotekar);
-                    break;
-                case Operacije.VRATI_AUTORE:
+                    /*case Operacije.VRATI_AUTORE:
                     ArrayList<Autor> autori = Kontroler.getInstance().vratiAutore();
                     so.setOdgovor(autori);
                     break;
@@ -63,14 +64,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                     ArrayList<Primerak> primerci = Kontroler.getInstance().vratiPrimerke();
                     so.setOdgovor(primerci);
                     break;*/
-                default:
-                    System.out.println("GRESKA, TA OPERACIJA NE POSTOJI!");
+                    default:
+                        System.out.println("GRESKA, TA OPERACIJA NE POSTOJI!");
+                }
+                posiljalac.posalji(odgovor);
+            } catch (Exception ex) {
+                Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
             }
-            posiljalac.posaljiOdgovor(odgovor);
         }
 
     }
-
-    
 
 }

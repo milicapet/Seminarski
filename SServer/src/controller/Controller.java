@@ -4,6 +4,9 @@
  */
 package controller;
 
+import domen.Bibliotekar;
+import operacija.login.LoginOperacija;
+
 /**
  *
  * @author milic
@@ -20,6 +23,13 @@ public class Controller {
             instance = new Controller();
         }
         return instance;
+    }
+
+    public Bibliotekar login(Bibliotekar b) throws Exception {
+        LoginOperacija operacija = new LoginOperacija();
+        operacija.izvrsi(b, null);
+        System.out.println("KLASA Controller: " + operacija.getBibliotekar());
+        return operacija.getBibliotekar();
     }
 
 }

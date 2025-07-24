@@ -4,13 +4,10 @@
  */
 package forme;
 
-import domen.Bibliotekar;
-import java.util.HashMap;
-import javax.swing.JOptionPane;
-import komunikacija.Operacije;
-import kontroler.Komunikacija;
-import komunikacija.Zahtev;
-import komunikacija.Odgovor;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -38,24 +35,24 @@ public class LoginForma extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtKorisnickoIme = new javax.swing.JTextField();
-        txtSifra = new javax.swing.JPasswordField();
-        btnPrijava = new javax.swing.JButton();
+        jTextFieldKorisnickoIme = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jButtonPrijava = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Korisnicko ime:");
+        jLabel1.setText("Korisničko ime:");
 
-        jLabel2.setText("Sifra:");
+        jLabel2.setText("Šifra:");
 
-        txtKorisnickoIme.setText("milica");
+        jTextFieldKorisnickoIme.setText("milicapet");
 
-        txtSifra.setText("milica");
+        jPasswordField1.setText("milicapet");
 
-        btnPrijava.setText("Prijava");
-        btnPrijava.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPrijava.setText("Prijava");
+        jButtonPrijava.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrijavaActionPerformed(evt);
+                jButtonPrijavaActionPerformed(evt);
             }
         });
 
@@ -72,11 +69,11 @@ public class LoginForma extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtKorisnickoIme)
-                            .addComponent(txtSifra, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextFieldKorisnickoIme)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(104, 104, 104)
-                        .addComponent(btnPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,89 +82,56 @@ public class LoginForma extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtKorisnickoIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldKorisnickoIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtSifra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(btnPrijava)
+                .addComponent(jButtonPrijava)
                 .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrijavaActionPerformed
+    private void jButtonPrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrijavaActionPerformed
         
-        String korisnickoIme = txtKorisnickoIme.getText().trim();
-        String sifra = String.copyValueOf(txtSifra.getPassword());
-        
-        HashMap<Integer, String> mapa = new HashMap<>();
-        mapa.put(1, korisnickoIme);
-        mapa.put(2, sifra);
-        
-        Zahtev kz = new Zahtev();
-        kz.setOperacija(Operacije.LOGIN);
-        kz.setParametar(mapa);
-        
-        Komunikacija.getInstance().posaljiZahtev(kz);
-        Odgovor so = Komunikacija.getInstance().primiOdgovor();
-        
-        Bibliotekar bibliotekar = (Bibliotekar) so.getOdgovor();
-        
-        if (bibliotekar == null) {
-            JOptionPane.showMessageDialog(this, "Nisu tacni kredencijali za prijavu!");
-        } else {
-            KlijentskaForma kf = new KlijentskaForma();
-            kf.setUlogovani(bibliotekar);
-            kf.setVisible(true);
-            this.dispose();
-        }
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnPrijavaActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginForma().setVisible(true);
-            }
-        });
+    }//GEN-LAST:event_jButtonPrijavaActionPerformed
+    
+    public JButton getjButtonPrijava() {
+        return jButtonPrijava;
+    }
+    
+    public void setjButtonPrijava(JButton jButtonPrijava) {
+        this.jButtonPrijava = jButtonPrijava;
+    }
+    
+    public JPasswordField getjPasswordField1() {
+        return jPasswordField1;
+    }
+    
+    public void setjPasswordField1(JPasswordField jPasswordField1) {
+        this.jPasswordField1 = jPasswordField1;
+    }
+    
+    public JTextField getjTextFieldKorisnickoIme() {
+        return jTextFieldKorisnickoIme;
+    }
+    
+    public void setjTextFieldKorisnickoIme(JTextField jTextFieldKorisnickoIme) {
+        this.jTextFieldKorisnickoIme = jTextFieldKorisnickoIme;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPrijava;
+    private javax.swing.JButton jButtonPrijava;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtKorisnickoIme;
-    private javax.swing.JPasswordField txtSifra;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JTextField jTextFieldKorisnickoIme;
     // End of variables declaration//GEN-END:variables
+
+    public void addActionListener(ActionListener actionListener) {
+        jButtonPrijava.addActionListener(actionListener);
+    }
 }

@@ -4,13 +4,16 @@
  */
 package domen;
 
-import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  *
  * @author milic
  */
-public class Bibliotekar implements Serializable {
+public class Bibliotekar implements ApstraktniDomenskiObjekat {
 
     private String korisnickoIme;
     private String sifra;
@@ -37,6 +40,73 @@ public class Bibliotekar implements Serializable {
 
     public void setKorisnickoIme(String korisnickoIme) {
         this.korisnickoIme = korisnickoIme;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Bibliotekar other = (Bibliotekar) obj;
+        if (!Objects.equals(this.korisnickoIme, other.korisnickoIme)) {
+            return false;
+        }
+        return Objects.equals(this.sifra, other.sifra);
+    }
+
+    @Override
+    public String vratiNazivTabele() {
+        return "bibliotekar";
+    }
+
+    @Override
+    public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        while (rs.next()) {
+            String korisnickoIme = rs.getString("bibliotekar.korisnickoIme");
+            String sifra = rs.getString("bibliotekar.sifra");
+
+            Bibliotekar b = new Bibliotekar(korisnickoIme, sifra);
+            lista.add(b);
+        }
+        return lista;
+    }
+
+    @Override
+    public String vratiKoloneZaUbacivanje() {
+        return "korisnickoIme,sifra";
+    }
+
+    @Override
+    public String vratiVrednostiZaUbacivanje() {
+        return "'" + korisnickoIme + "','" + sifra + "'";
+    }
+
+    @Override
+    public String vratiPrimarniKljuc() {
+        return "bibliotekar.korisnickoIme=" + korisnickoIme;
+    }
+
+    @Override
+    public ApstraktniDomenskiObjekat vratiObjekatIzRS(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public String vratiVrednostiZaIzmenu() {
+        return "korisnickoIme='" + korisnickoIme + "',sifra='" + sifra + "'";
     }
 
 }
