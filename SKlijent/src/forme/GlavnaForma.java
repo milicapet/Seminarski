@@ -4,6 +4,7 @@
  */
 package forme;
 
+import cordinator.Cordinator;
 import javax.swing.JLabel;
 
 /**
@@ -65,6 +66,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Pregled");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -111,6 +117,10 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Cordinator.getInstance().otvoriPrikazClanovaFormu();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     public JLabel getjLabelUlogovani() {
         return jLabelUlogovani;

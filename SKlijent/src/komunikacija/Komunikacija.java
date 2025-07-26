@@ -5,8 +5,11 @@
 package komunikacija;
 
 import domen.Bibliotekar;
+import domen.Clan;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -46,6 +49,15 @@ public class Komunikacija {
         Odgovor odg = (Odgovor) primalac.primi();
         b = (Bibliotekar) odg.getOdgovor();
         return b;
+    }
+
+    public List<Clan> ucitajPacijente() {
+        List<Clan> clanovi = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_CLANOVE, null);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        clanovi = (List<Clan>) odg.getOdgovor();
+        return clanovi;
     }
 
 }
