@@ -4,7 +4,10 @@
  */
 package cordinator;
 
+import domen.Bibliotekar;
+import forme.GlavnaForma;
 import forme.LoginForma;
+import kontroleri.GlavnaFormaController;
 import kontroleri.LoginController;
 
 /**
@@ -14,7 +17,9 @@ import kontroleri.LoginController;
 public class Cordinator {
 
     private static Cordinator instance;
+    private Bibliotekar ulogovani;
     private LoginController loginController;
+    private GlavnaFormaController glavnaFormaController;
 
     private Cordinator() {
     }
@@ -30,5 +35,20 @@ public class Cordinator {
         loginController = new LoginController(new LoginForma());
         loginController.otvoriFormu();
     }
+
+    public void otvoriGlavnuFormu() {
+        glavnaFormaController = new GlavnaFormaController(new GlavnaForma());
+        glavnaFormaController.otvoriFormu();
+    }
+
+    public Bibliotekar getUlogovani() {
+        return ulogovani;
+    }
+
+    public void setUlogovani(Bibliotekar ulogovani) {
+        this.ulogovani = ulogovani;
+    }
+    
+    
 
 }

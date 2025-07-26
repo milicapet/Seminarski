@@ -4,6 +4,7 @@
  */
 package kontroleri;
 
+import cordinator.Cordinator;
 import domen.Bibliotekar;
 import forme.LoginForma;
 import java.awt.event.ActionEvent;
@@ -40,9 +41,10 @@ public class LoginController {
 
                 if (ulogovani == null) {
                     JOptionPane.showMessageDialog(lf, "Prijava neuspešna! ", "GREŠKA", JOptionPane.ERROR_MESSAGE);
-
                 } else {
+                    Cordinator.getInstance().setUlogovani(ulogovani);
                     JOptionPane.showMessageDialog(lf, "Prijava uspešna! ", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                    Cordinator.getInstance().otvoriGlavnuFormu();
                     lf.dispose();
                 }
             }
