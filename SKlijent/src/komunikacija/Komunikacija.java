@@ -52,7 +52,7 @@ public class Komunikacija {
         return b;
     }
 
-    public List<Clan> ucitajPacijente() {
+    public List<Clan> ucitajClanove() {
         List<Clan> clanovi = new ArrayList<>();
         Zahtev zahtev = new Zahtev(Operacije.UCITAJ_CLANOVE, null);
         posiljalac.posalji(zahtev);
@@ -61,7 +61,7 @@ public class Komunikacija {
         return clanovi;
     }
 
-    public void obrisiPacijenta(Clan c) throws Exception {
+    public void obrisiClana(Clan c) throws Exception {
         Zahtev zahtev = new Zahtev(Operacije.OBRISI_CLANA, c);
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
@@ -73,6 +73,17 @@ public class Komunikacija {
             System.out.println("Greska u brisanju");
             ((Exception) odg.getOdgovor()).printStackTrace();
             throw new Exception("GREŠKA");
+        }
+    }
+
+    public void dodajClana(Clan c) {
+        Zahtev zahtev = new Zahtev(Operacije.DODAJ_CLANA, c);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno dodato");
+        } else {
+            System.out.println("Greska u brisanju");
         }
     }
 

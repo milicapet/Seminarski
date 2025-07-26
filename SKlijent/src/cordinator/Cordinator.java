@@ -5,9 +5,11 @@
 package cordinator;
 
 import domen.Bibliotekar;
+import forme.DodajClanaForma;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazClanovaForma;
+import kontroleri.DodajClanaController;
 import kontroleri.GlavnaFormaController;
 import kontroleri.LoginController;
 import kontroleri.PrikazClanovaController;
@@ -23,6 +25,7 @@ public class Cordinator {
     private LoginController loginController;
     private GlavnaFormaController glavnaFormaController;
     private PrikazClanovaController prikazClanovaController;
+    private DodajClanaController dodajClanaController;
 
     private Cordinator() {
     }
@@ -43,12 +46,17 @@ public class Cordinator {
         glavnaFormaController = new GlavnaFormaController(new GlavnaForma());
         glavnaFormaController.otvoriFormu();
     }
-    
+
     public void otvoriPrikazClanovaFormu() {
         prikazClanovaController = new PrikazClanovaController(new PrikazClanovaForma());
         prikazClanovaController.otvoriFormu();
     }
     
+    public void otvoriDodajClanaFormu() {
+        dodajClanaController = new DodajClanaController(new DodajClanaForma());
+        dodajClanaController.otvoriFormu();
+    }
+
     public Bibliotekar getUlogovani() {
         return ulogovani;
     }
@@ -57,8 +65,5 @@ public class Cordinator {
         this.ulogovani = ulogovani;
     }
 
-    
-    
-    
 
 }

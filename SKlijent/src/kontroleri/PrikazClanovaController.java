@@ -10,8 +10,6 @@ import forme.model.ModelTabeleClan;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 
@@ -34,7 +32,7 @@ public class PrikazClanovaController {
     }
 
     private void pripremiFormu() {
-        List<Clan> clanovi = Komunikacija.getInstance().ucitajPacijente();
+        List<Clan> clanovi = Komunikacija.getInstance().ucitajClanove();
         ModelTabeleClan mtc = new ModelTabeleClan(clanovi);
         pcf.getjTableClanovi().setModel(mtc);
     }
@@ -50,12 +48,11 @@ public class PrikazClanovaController {
                     ModelTabeleClan mtc = (ModelTabeleClan) pcf.getjTableClanovi().getModel();
                     Clan c = mtc.getLista().get(selRed);
                     try {
-                        Komunikacija.getInstance().obrisiPacijenta(c);
+                        Komunikacija.getInstance().obrisiClana(c);
                         JOptionPane.showMessageDialog(null, "Sistem je izbrisao podatke o članu", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                         pripremiFormu();
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Sistem ne moeže da izbriše člana", "GREŠKA", JOptionPane.ERROR_MESSAGE);
-
                     }
                 }
             }
