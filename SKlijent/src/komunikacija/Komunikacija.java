@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,6 +59,21 @@ public class Komunikacija {
         Odgovor odg = (Odgovor) primalac.primi();
         clanovi = (List<Clan>) odg.getOdgovor();
         return clanovi;
+    }
+
+    public void obrisiPacijenta(Clan c) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacije.OBRISI_CLANA, c);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno obrisano");
+            //JOptionPane.showMessageDialog(null, "Sistem je izbrisao podatke o članu", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            //JOptionPane.showMessageDialog(null, "Sistem ne moeže da izbriše člana", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Greska u brisanju");
+            ((Exception) odg.getOdgovor()).printStackTrace();
+            throw new Exception("GREŠKA");
+        }
     }
 
 }

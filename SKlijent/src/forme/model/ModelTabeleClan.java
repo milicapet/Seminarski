@@ -21,6 +21,10 @@ public class ModelTabeleClan extends AbstractTableModel {
         this.lista = lista;
     }
 
+    public List<Clan> getLista() {
+        return lista;
+    }
+
     @Override
     public int getRowCount() {
         return lista.size();

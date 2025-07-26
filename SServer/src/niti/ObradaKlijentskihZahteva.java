@@ -49,6 +49,16 @@ public class ObradaKlijentskihZahteva extends Thread {
                         List<Clan> clanovi = Controller.getInstance().ucitajClanove();
                         odgovor.setOdgovor(clanovi);
                         break;
+                    case Operacije.OBRISI_CLANA:
+                        try {
+                        Clan c = (Clan) zahtev.getParametar();
+                        Controller.getInstance().obrisiClana(c);
+                        odgovor.setOdgovor(null);
+                    } catch (Exception e) {
+                        odgovor.setOdgovor(e);
+                    }
+
+                    break;
                     /*case Operacije.VRATI_AUTORE:
                     ArrayList<Autor> autori = Kontroler.getInstance().vratiAutore();
                     so.setOdgovor(autori);

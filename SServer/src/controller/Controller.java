@@ -7,7 +7,8 @@ package controller;
 import domen.Bibliotekar;
 import domen.Clan;
 import java.util.List;
-import operacija.UcitajClanoveSO;
+import operacija.clanovi.ObrisiClanaSO;
+import operacija.clanovi.UcitajClanoveSO;
 import operacija.login.LoginOperacija;
 
 /**
@@ -40,6 +41,11 @@ public class Controller {
         operacija.izvrsi(null, null);
         System.out.println("KLASA Controller: " + operacija.getClanovi());
         return operacija.getClanovi();
+    }
+
+    public void obrisiClana(Clan c) throws Exception {
+        ObrisiClanaSO operacija = new ObrisiClanaSO();
+        operacija.izvrsi(c, null);
     }
 
 }

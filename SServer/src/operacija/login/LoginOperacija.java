@@ -22,6 +22,9 @@ public class LoginOperacija extends ApstraktnaGenerickaOperacija {
 
     @Override
     protected void preduslovi(Object param) throws Exception {
+        if (param == null || !(param instanceof Bibliotekar)) {
+            throw new Exception("Sistem ne može da uloguje bibliotekara");
+        }
     }
 
     @Override
