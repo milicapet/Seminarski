@@ -33,6 +33,7 @@ public class PrikazClanovaForma extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableClanovi = new javax.swing.JTable();
         jButtonObrisi = new javax.swing.JButton();
+        jButtonIzmeni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,16 +52,20 @@ public class PrikazClanovaForma extends javax.swing.JFrame {
 
         jButtonObrisi.setText("Obriši člana");
 
+        jButtonIzmeni.setText("Izmeni člana");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jButtonObrisi)
-                .addGap(17, 17, 17))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonIzmeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,8 +76,10 @@ public class PrikazClanovaForma extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(150, 150, 150)
-                        .addComponent(jButtonObrisi)))
-                .addContainerGap(260, Short.MAX_VALUE))
+                        .addComponent(jButtonObrisi)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButtonIzmeni)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
@@ -88,6 +95,7 @@ public class PrikazClanovaForma extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonIzmeni;
     private javax.swing.JButton jButtonObrisi;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableClanovi;
@@ -95,5 +103,9 @@ public class PrikazClanovaForma extends javax.swing.JFrame {
 
     public void addBtnObrisiActionListener(ActionListener actionListener) {
         jButtonObrisi.addActionListener(actionListener);
+    }
+    
+    public void addBtnIzmeniActionListener(ActionListener actionListener) {
+        jButtonIzmeni.addActionListener(actionListener);
     }
 }

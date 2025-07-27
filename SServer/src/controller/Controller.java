@@ -7,6 +7,7 @@ package controller;
 import domen.Bibliotekar;
 import domen.Clan;
 import java.util.List;
+import operacija.clanovi.IzmeniClanaSO;
 import operacija.clanovi.KreirajClanaSO;
 import operacija.clanovi.ObrisiClanaSO;
 import operacija.clanovi.UcitajClanoveSO;
@@ -52,6 +53,11 @@ public class Controller {
     public void dodajClana(Clan c) throws Exception {
         KreirajClanaSO operacija = new KreirajClanaSO();
         operacija.izvrsi(c, null);
+    }
+
+    public void izmeniClana(Clan c1) throws Exception {
+        IzmeniClanaSO operacija = new IzmeniClanaSO();
+        operacija.izvrsi(c1, null);
     }
 
 }

@@ -4,13 +4,13 @@
  */
 package komunikacija;
 
+import cordinator.Cordinator;
 import domen.Bibliotekar;
 import domen.Clan;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -84,6 +84,18 @@ public class Komunikacija {
             System.out.println("Uspesno dodato");
         } else {
             System.out.println("Greska u brisanju");
+        }
+    }
+
+    public void izmeniClana(Clan c) {
+        Zahtev zahtev = new Zahtev(Operacije.IZMENI_CLANA, c);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno izmenjeno");
+            Cordinator.getInstance().osveziFormu();
+        } else {
+            System.out.println("Greska u izmeni");
         }
     }
 

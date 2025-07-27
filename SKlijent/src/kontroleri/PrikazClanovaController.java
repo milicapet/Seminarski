@@ -4,6 +4,7 @@
  */
 package kontroleri;
 
+import cordinator.Cordinator;
 import domen.Clan;
 import forme.PrikazClanovaForma;
 import forme.model.ModelTabeleClan;
@@ -52,12 +53,29 @@ public class PrikazClanovaController {
                         JOptionPane.showMessageDialog(null, "Sistem je izbrisao podatke o članu", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                         pripremiFormu();
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "Sistem ne moeže da izbriše člana", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Sistem ne može da izbriše člana", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
         });
+        pcf.addBtnIzmeniActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selRed = pcf.getjTableClanovi().getSelectedRow();
+                if (selRed == -1) {
+                    JOptionPane.showMessageDialog(pcf, "Sistem ne može da izmeni člana", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    ModelTabeleClan mtc = (ModelTabeleClan) pcf.getjTableClanovi().getModel();
+                    Clan c = mtc.getLista().get(selRed);
+                    Cordinator.getInstance().dodajParam("clan", c);
+                    Cordinator.getInstance().otvoriIzmeniClanaFormu();
+                }
+            }
+        });
+    }
 
+    public void osveziFormu() {
+        pripremiFormu();
     }
 
 }

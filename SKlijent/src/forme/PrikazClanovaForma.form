@@ -25,10 +25,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="596" max="-2" attributes="0"/>
-              <EmptySpace pref="47" max="32767" attributes="0"/>
-              <Component id="jButtonObrisi" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="714" max="-2" attributes="0"/>
+              <EmptySpace pref="63" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jButtonIzmeni" max="32767" attributes="0"/>
+                  <Component id="jButtonObrisi" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,9 +46,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                       <Component id="jButtonObrisi" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="jButtonIzmeni" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="260" max="32767" attributes="0"/>
+              <EmptySpace pref="79" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,6 +80,11 @@
     <Component class="javax.swing.JButton" name="jButtonObrisi">
       <Properties>
         <Property name="text" type="java.lang.String" value="Obri&#x161;i &#x10d;lana"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonIzmeni">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Izmeni &#x10d;lana"/>
       </Properties>
     </Component>
   </SubComponents>

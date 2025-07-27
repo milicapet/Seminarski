@@ -5,6 +5,7 @@
 package forme;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
 /**
@@ -40,6 +41,7 @@ public class DodajClanaForma extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButtonIzmeni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +57,8 @@ public class DodajClanaForma extends javax.swing.JFrame {
 
         jLabel4.setText("Adresa:");
 
+        jButtonIzmeni.setText("Izmeni člana");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,16 +73,18 @@ public class DodajClanaForma extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldAdresa)
+                    .addComponent(jTextFieldAdresa, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                     .addComponent(jTextFieldBrTel)
                     .addComponent(jTextFieldPrezime)
                     .addComponent(jTextFieldBrClanskeKarte)
                     .addComponent(jTextFieldIme))
                 .addGap(45, 45, 45))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(299, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
                 .addComponent(jButtonDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(200, 200, 200))
+                .addGap(65, 65, 65)
+                .addComponent(jButtonIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,9 +109,11 @@ public class DodajClanaForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(jTextFieldBrTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
-                .addComponent(jButtonDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,8 +139,17 @@ public class DodajClanaForma extends javax.swing.JFrame {
         return jTextFieldPrezime;
     }
 
+    public JButton getjButtonDodaj() {
+        return jButtonDodaj;
+    }
+
+    public JButton getjButtonIzmeni() {
+        return jButtonIzmeni;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDodaj;
+    private javax.swing.JButton jButtonIzmeni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -147,5 +164,9 @@ public class DodajClanaForma extends javax.swing.JFrame {
 
     public void addBtnDodajActionListener(ActionListener actionListener) {
         jButtonDodaj.addActionListener(actionListener);
+    }
+
+    public void addBtnIzmeniActionListener(ActionListener actionListener) {
+        jButtonIzmeni.addActionListener(actionListener);
     }
 }

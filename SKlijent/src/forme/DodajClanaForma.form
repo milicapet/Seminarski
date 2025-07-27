@@ -34,7 +34,7 @@
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTextFieldAdresa" max="32767" attributes="0"/>
+                  <Component id="jTextFieldAdresa" pref="421" max="32767" attributes="0"/>
                   <Component id="jTextFieldBrTel" max="32767" attributes="0"/>
                   <Component id="jTextFieldPrezime" alignment="0" max="32767" attributes="0"/>
                   <Component id="jTextFieldBrClanskeKarte" alignment="0" max="32767" attributes="0"/>
@@ -42,10 +42,12 @@
               </Group>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="299" max="32767" attributes="0"/>
-              <Component id="jButtonDodaj" min="-2" pref="144" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
+              <Component id="jButtonDodaj" min="-2" pref="144" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <Component id="jButtonIzmeni" min="-2" pref="144" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,9 +79,12 @@
                   <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextFieldBrTel" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-              <Component id="jButtonDodaj" min="-2" pref="41" max="-2" attributes="0"/>
-              <EmptySpace pref="68" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonDodaj" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="jButtonIzmeni" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="72" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,6 +128,11 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Adresa:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonIzmeni">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Izmeni &#x10d;lana"/>
       </Properties>
     </Component>
   </SubComponents>
