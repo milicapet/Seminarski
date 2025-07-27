@@ -7,6 +7,7 @@ package komunikacija;
 import cordinator.Cordinator;
 import domen.Bibliotekar;
 import domen.Clan;
+import domen.Knjiga;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -97,6 +98,15 @@ public class Komunikacija {
         } else {
             System.out.println("Greska u izmeni");
         }
+    }
+
+    public List<Knjiga> ucitajKnjige() {
+        List<Knjiga> knjige = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_KNJIGE, "");
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        knjige = (List<Knjiga>) odg.getOdgovor();
+        return knjige;        
     }
 
 }

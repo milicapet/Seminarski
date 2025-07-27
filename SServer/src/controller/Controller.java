@@ -6,11 +6,13 @@ package controller;
 
 import domen.Bibliotekar;
 import domen.Clan;
+import domen.Knjiga;
 import java.util.List;
 import operacija.clanovi.IzmeniClanaSO;
 import operacija.clanovi.KreirajClanaSO;
 import operacija.clanovi.ObrisiClanaSO;
 import operacija.clanovi.UcitajClanoveSO;
+import operacija.knjige.UcitajKnjigeSO;
 import operacija.login.LoginOperacija;
 
 /**
@@ -58,6 +60,14 @@ public class Controller {
     public void izmeniClana(Clan c1) throws Exception {
         IzmeniClanaSO operacija = new IzmeniClanaSO();
         operacija.izvrsi(c1, null);
+    }
+
+    public List<Knjiga> ucitajKnjige() throws Exception {
+        UcitajKnjigeSO operacija = new UcitajKnjigeSO();
+        operacija.izvrsi(new Knjiga(), "");
+        System.out.println("KLASA Controller: " + operacija.getKnjige());
+        return operacija.getKnjige();
+        
     }
 
 }

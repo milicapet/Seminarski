@@ -7,6 +7,7 @@ package niti;
 import controller.Controller;
 import domen.Bibliotekar;
 import domen.Clan;
+import domen.Knjiga;
 import java.net.Socket;
 import java.util.List;
 import java.util.logging.Level;
@@ -57,7 +58,6 @@ public class ObradaKlijentskihZahteva extends Thread {
                     } catch (Exception e) {
                         odgovor.setOdgovor(e);
                     }
-
                     break;
                     case Operacije.DODAJ_CLANA:
                         Clan c = (Clan) zahtev.getParametar();
@@ -69,6 +69,10 @@ public class ObradaKlijentskihZahteva extends Thread {
                         Controller.getInstance().izmeniClana(c1);
                         odgovor.setOdgovor(null);
                         break;
+                    case Operacije.UCITAJ_KNJIGE:
+                    List<Knjiga> knjige = Controller.getInstance().ucitajKnjige();
+                    odgovor.setOdgovor(knjige);
+                    break;
                     /*case Operacije.VRATI_AUTORE:
                     ArrayList<Autor> autori = Kontroler.getInstance().vratiAutore();
                     so.setOdgovor(autori);
@@ -78,10 +82,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                     so.setOdgovor(izdavaci);
                     break;
                 
-                case Operacije.VRATI_KNJIGE:
-                    ArrayList<Knjiga> knjige = Kontroler.getInstance().vratiKnjige();
-                    so.setOdgovor(knjige);
-                    break;
+                
                 case Operacije.VRATI_PRIMERKE:
                     ArrayList<Primerak> primerci = Kontroler.getInstance().vratiPrimerke();
                     so.setOdgovor(primerci);

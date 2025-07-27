@@ -10,12 +10,14 @@ import forme.FormaMod;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazClanovaForma;
+import forme.PrikazKnjigaForma;
 import java.util.HashMap;
 import java.util.Map;
 import kontroleri.DodajClanaController;
 import kontroleri.GlavnaFormaController;
 import kontroleri.LoginController;
 import kontroleri.PrikazClanovaController;
+import kontroleri.PrikazKnjigaController;
 
 /**
  *
@@ -30,6 +32,7 @@ public class Cordinator {
     private PrikazClanovaController prikazClanovaController;
     private DodajClanaController dodajClanaController;
     private Map<String, Object> parametri;
+    private PrikazKnjigaController prikazKnjigaController;
 
     private Cordinator() {
         parametri = new HashMap<>();
@@ -85,6 +88,11 @@ public class Cordinator {
 
     public void osveziFormu() {
         prikazClanovaController.osveziFormu();
+    }
+
+    public void otvoriPrikazKnjigaFormu() {
+        prikazKnjigaController = new PrikazKnjigaController(new PrikazKnjigaForma());
+        prikazKnjigaController.otvoriFormu();
     }
 
 }
