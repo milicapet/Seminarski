@@ -6,6 +6,7 @@ package forme.model;
 
 import domen.Clan;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -59,6 +60,20 @@ public class ModelTabeleClan extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         return kolone[column];
+    }
+
+    public void pretrazi(String brClanskeKarte, String ime, String prezime, String adresa, String brTel) {
+        System.out.println("LISTA ORIGINAL" + lista);
+        List<Clan> filteredList = lista.stream()
+                .filter(c -> (brClanskeKarte == null || brClanskeKarte.isEmpty()) || (String.valueOf(c.getBrojClanskeKarte())).contains(brClanskeKarte))
+                .filter(c -> (ime == null || ime.isEmpty() || c.getIme().toLowerCase().contains(ime.toLowerCase())))
+                .filter(c -> (prezime == null || prezime.isEmpty() || c.getPrezime().toLowerCase().contains(prezime.toLowerCase())))
+                .filter(c -> (adresa == null || adresa.isEmpty() || c.getAdresa().toLowerCase().contains(adresa.toLowerCase())))
+                .filter(c -> (brTel == null || brTel.isEmpty() || c.getBrojTelefona().toLowerCase().contains(brTel.toLowerCase())))
+                .collect(Collectors.toList());
+        lista = filteredList;
+        System.out.println("FILTRIRANA LISTA " + filteredList);
+        fireTableDataChanged();
     }
 
 }

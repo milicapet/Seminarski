@@ -72,6 +72,25 @@ public class PrikazClanovaController {
                 }
             }
         });
+        pcf.addBtnPretraziActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String brClanskeKarte = pcf.getjTextFieldBrClanskeKarte().getText().trim();
+                String ime = pcf.getjTextFieldIme().getText().trim();
+                String prezime = pcf.getjTextFieldPrezime().getText().trim();
+                String adresa = pcf.getjTextFieldAdresa().getText().trim();
+                String brTel = pcf.getjTextFieldBrTel().getText().trim();
+                System.out.println("brCLanskeKarte " + brClanskeKarte + "DUZINA STRINGA"+brClanskeKarte.length());
+                ModelTabeleClan mtc = (ModelTabeleClan) pcf.getjTableClanovi().getModel();
+                mtc.pretrazi(brClanskeKarte, ime, prezime, adresa, brTel);
+            }
+        });
+        pcf.addBtnResetujActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pripremiFormu();
+            }
+        });
     }
 
     public void osveziFormu() {
