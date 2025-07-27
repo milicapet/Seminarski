@@ -7,12 +7,14 @@ package controller;
 import domen.Bibliotekar;
 import domen.Clan;
 import domen.Knjiga;
+import domen.Primerak;
 import java.util.List;
 import operacija.clanovi.IzmeniClanaSO;
 import operacija.clanovi.KreirajClanaSO;
 import operacija.clanovi.ObrisiClanaSO;
 import operacija.clanovi.UcitajClanoveSO;
 import operacija.knjige.UcitajKnjigeSO;
+import operacija.knjige.primerci.UcitajPrimerkeSO;
 import operacija.login.LoginOperacija;
 
 /**
@@ -67,7 +69,14 @@ public class Controller {
         operacija.izvrsi(new Knjiga(), "");
         System.out.println("KLASA Controller: " + operacija.getKnjige());
         return operacija.getKnjige();
-        
+
+    }
+
+    public List<Primerak> ucitajPrimerke(int sifraKnjige) throws Exception {
+        UcitajPrimerkeSO operacija = new UcitajPrimerkeSO();
+        operacija.izvrsi(sifraKnjige, null);
+        System.out.println("KLASA Controller: " + operacija.getPrimerci());
+        return operacija.getPrimerci();
     }
 
 }

@@ -8,6 +8,7 @@ import cordinator.Cordinator;
 import domen.Bibliotekar;
 import domen.Clan;
 import domen.Knjiga;
+import domen.Primerak;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -107,6 +108,16 @@ public class Komunikacija {
         Odgovor odg = (Odgovor) primalac.primi();
         knjige = (List<Knjiga>) odg.getOdgovor();
         return knjige;        
+    }
+
+    public List<Primerak> ucitajPrimerke(int sifraKnjige) {
+        List<Primerak> primerci = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_PRIMERKE, sifraKnjige);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        primerci = (List<Primerak>) odg.getOdgovor();
+        return primerci;        
+        
     }
 
 }

@@ -8,6 +8,7 @@ import controller.Controller;
 import domen.Bibliotekar;
 import domen.Clan;
 import domen.Knjiga;
+import domen.Primerak;
 import java.net.Socket;
 import java.util.List;
 import java.util.logging.Level;
@@ -70,9 +71,14 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setOdgovor(null);
                         break;
                     case Operacije.UCITAJ_KNJIGE:
-                    List<Knjiga> knjige = Controller.getInstance().ucitajKnjige();
-                    odgovor.setOdgovor(knjige);
-                    break;
+                        List<Knjiga> knjige = Controller.getInstance().ucitajKnjige();
+                        odgovor.setOdgovor(knjige);
+                        break;
+                    case Operacije.UCITAJ_PRIMERKE:
+                        int sifraKnjige = (int) zahtev.getParametar();
+                        List<Primerak> primerci = Controller.getInstance().ucitajPrimerke(sifraKnjige);
+                        odgovor.setOdgovor(primerci);
+                        break;
                     /*case Operacije.VRATI_AUTORE:
                     ArrayList<Autor> autori = Kontroler.getInstance().vratiAutore();
                     so.setOdgovor(autori);
@@ -83,10 +89,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                     break;
                 
                 
-                case Operacije.VRATI_PRIMERKE:
-                    ArrayList<Primerak> primerci = Kontroler.getInstance().vratiPrimerke();
-                    so.setOdgovor(primerci);
-                    break;*/
+                     */
                     default:
                         System.out.println("GRESKA, TA OPERACIJA NE POSTOJI!");
                 }

@@ -4,8 +4,8 @@
  */
 package domen;
 
-import java.io.Serializable;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -83,7 +83,26 @@ public class Primerak implements ApstraktniDomenskiObjekat {
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        while (rs.next()) {
+            int sifraPrimerka = rs.getInt("primerak.sifraPrimerka");
+            int godinaIzdanja = rs.getInt("primerak.godinaIzdanja");
+            int brojIzdanja = rs.getInt("primerak.brojIzdanja");
+
+            int sifraIzdavaca = rs.getInt("izdavac.sifraIzdavaca");
+            String naziv = rs.getString("izdavac.naziv");
+            String adresa = rs.getString("izdavac.adresa");
+            Izdavac izdavac = new Izdavac(sifraIzdavaca, naziv, adresa);
+
+            Primerak p = new Primerak();
+            p.setSifraPrimerka(sifraPrimerka);
+            p.setGodinaIzdanja(godinaIzdanja);
+            p.setBrojIzdanja(brojIzdanja);
+            p.setIzdavac(izdavac);
+            lista.add(p);
+        }
+        return lista;
+
     }
 
     @Override

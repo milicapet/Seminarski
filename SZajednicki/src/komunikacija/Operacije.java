@@ -16,5 +16,6 @@ public interface Operacije {
     public static final int DODAJ_CLANA = 4;
     public static final int IZMENI_CLANA = 5;
     public static final int UCITAJ_KNJIGE = 6;
+    public static final int UCITAJ_PRIMERKE = 7;
 
 }
