@@ -5,8 +5,10 @@
 package komunikacija;
 
 import cordinator.Cordinator;
+import domen.Autor;
 import domen.Bibliotekar;
 import domen.Clan;
+import domen.Izdavac;
 import domen.Knjiga;
 import domen.Primerak;
 import java.io.IOException;
@@ -116,8 +118,25 @@ public class Komunikacija {
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
         primerci = (List<Primerak>) odg.getOdgovor();
-        return primerci;        
-        
+        return primerci;                
+    }
+
+    public List<Autor> ucitajAutore() {
+        List<Autor> autori = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_AUTORE, "");
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        autori = (List<Autor>) odg.getOdgovor();
+        return autori;  
+    }
+
+    public List<Izdavac> ucitajIzdavace() {
+        List<Izdavac> izdavaci = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_IZDAVACE, "");
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        izdavaci = (List<Izdavac>) odg.getOdgovor();
+        return izdavaci;  
     }
 
 }

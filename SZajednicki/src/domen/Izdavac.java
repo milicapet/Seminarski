@@ -53,7 +53,7 @@ public class Izdavac implements ApstraktniDomenskiObjekat {
 
     @Override
     public String toString() {
-        return "Izdavac{" + "naziv=" + naziv + '}';
+        return naziv + ", " + adresa;
     }
 
     @Override

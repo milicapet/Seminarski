@@ -4,15 +4,19 @@
  */
 package controller;
 
+import domen.Autor;
 import domen.Bibliotekar;
 import domen.Clan;
+import domen.Izdavac;
 import domen.Knjiga;
 import domen.Primerak;
 import java.util.List;
+import operacija.autori.UcitajAutoreSO;
 import operacija.clanovi.IzmeniClanaSO;
 import operacija.clanovi.KreirajClanaSO;
 import operacija.clanovi.ObrisiClanaSO;
 import operacija.clanovi.UcitajClanoveSO;
+import operacija.izdavaci.UcitajIzdavaceSO;
 import operacija.knjige.UcitajKnjigeSO;
 import operacija.knjige.primerci.UcitajPrimerkeSO;
 import operacija.login.LoginOperacija;
@@ -77,6 +81,20 @@ public class Controller {
         operacija.izvrsi(sifraKnjige, null);
         System.out.println("KLASA Controller: " + operacija.getPrimerci());
         return operacija.getPrimerci();
+    }
+
+    public List<Autor> ucitajAutore() throws Exception {
+        UcitajAutoreSO operacija = new UcitajAutoreSO();
+        operacija.izvrsi(new Autor(), "");
+        System.out.println("KLASA Controller: " + operacija.getAutori());
+        return operacija.getAutori();
+    }
+
+    public List<Izdavac> ucitajIzdavace() throws Exception {
+        UcitajIzdavaceSO operacija = new UcitajIzdavaceSO();
+        operacija.izvrsi(new Izdavac(), "");
+        System.out.println("KLASA Controller: " + operacija.getIzdavaci());
+        return operacija.getIzdavaci();
     }
 
 }

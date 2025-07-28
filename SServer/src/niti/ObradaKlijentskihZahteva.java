@@ -5,8 +5,10 @@
 package niti;
 
 import controller.Controller;
+import domen.Autor;
 import domen.Bibliotekar;
 import domen.Clan;
+import domen.Izdavac;
 import domen.Knjiga;
 import domen.Primerak;
 import java.net.Socket;
@@ -79,17 +81,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         List<Primerak> primerci = Controller.getInstance().ucitajPrimerke(sifraKnjige);
                         odgovor.setOdgovor(primerci);
                         break;
-                    /*case Operacije.VRATI_AUTORE:
-                    ArrayList<Autor> autori = Kontroler.getInstance().vratiAutore();
-                    so.setOdgovor(autori);
-                    break;
-                case Operacije.VRATI_IZDAVACE:
-                    ArrayList<Izdavac> izdavaci = Kontroler.getInstance().vratiIzdavace();
-                    so.setOdgovor(izdavaci);
-                    break;
-                
-                
-                     */
+                    case Operacije.UCITAJ_AUTORE:
+                        List<Autor> autori = Controller.getInstance().ucitajAutore();
+                        odgovor.setOdgovor(autori);
+                        break;
+                    case Operacije.UCITAJ_IZDAVACE:
+                        List<Izdavac> izdavaci = Controller.getInstance().ucitajIzdavace();
+                        odgovor.setOdgovor(izdavaci);
+                        break;
+
                     default:
                         System.out.println("GRESKA, TA OPERACIJA NE POSTOJI!");
                 }

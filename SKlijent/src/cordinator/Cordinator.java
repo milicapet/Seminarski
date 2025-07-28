@@ -6,6 +6,7 @@ package cordinator;
 
 import domen.Bibliotekar;
 import forme.DodajClanaForma;
+import forme.DodajKnjiguForma;
 import forme.FormaMod;
 import forme.GlavnaForma;
 import forme.LoginForma;
@@ -14,6 +15,7 @@ import forme.PrikazKnjigaForma;
 import java.util.HashMap;
 import java.util.Map;
 import kontroleri.DodajClanaController;
+import kontroleri.DodajKnjiguController;
 import kontroleri.GlavnaFormaController;
 import kontroleri.LoginController;
 import kontroleri.PrikazClanovaController;
@@ -33,6 +35,7 @@ public class Cordinator {
     private DodajClanaController dodajClanaController;
     private Map<String, Object> parametri;
     private PrikazKnjigaController prikazKnjigaController;
+    private DodajKnjiguController dodajKnjiguController;
 
     private Cordinator() {
         parametri = new HashMap<>();
@@ -93,6 +96,11 @@ public class Cordinator {
     public void otvoriPrikazKnjigaFormu() {
         prikazKnjigaController = new PrikazKnjigaController(new PrikazKnjigaForma());
         prikazKnjigaController.otvoriFormu();
+    }
+
+    public void otvoriDodajKnjiguFormu() {
+        dodajKnjiguController = new DodajKnjiguController(new DodajKnjiguForma());
+        dodajKnjiguController.otvoriFormu(FormaMod.DODAJ);
     }
 
 }
