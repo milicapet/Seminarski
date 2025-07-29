@@ -6,11 +6,16 @@ package kontroleri;
 
 import domen.Autor;
 import domen.Izdavac;
+import domen.Knjiga;
+import domen.Primerak;
 import forme.DodajKnjiguForma;
 import forme.FormaMod;
+import forme.model.ModelTabelePrimerak;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 
 /**
@@ -27,6 +32,35 @@ public class DodajKnjiguController {
     }
 
     private void addActionListeners() {
+        dkf.addBtnDodajPrimerakActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
+                int sifraPrimerka = Integer.parseInt(dkf.getjTextFieldSifraPrimerka().getText().trim());
+                int godIzdanja = Integer.parseInt(dkf.getjTextFieldGodinaIzdanja().getText().trim());
+                int brIzdanja = Integer.parseInt(dkf.getjTextFieldBrojIzdanja().getText().trim());
+                Izdavac i = (Izdavac) dkf.getjComboBoxIzdavaci().getSelectedItem();
+                Knjiga k = new Knjiga();
+                k.setSifraKnjige(sifraKnjige);
+                Primerak p = new Primerak(k, sifraPrimerka, godIzdanja, brIzdanja, i);
+                ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
+                mtp.dodajPrimerak(p);
+            }
+        });
+        dkf.addBtnObrisiPrimerakActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selRed = dkf.getjTablePrimerci().getSelectedRow();
+                if (selRed != -1) {
+                    ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
+                    Primerak p = mtp.getLista().get(selRed);
+                    mtp.obrisiPrimerak(p);
+                } else {
+                    JOptionPane.showMessageDialog(dkf, "Nije selektovan red za brisanje! ", "GRESKA", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+        });
         dkf.addBtnDodajKnjiguActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -68,6 +102,8 @@ public class DodajKnjiguController {
     }
 
     public void otvoriFormu(FormaMod mod) {
+        ModelTabelePrimerak mtp = new ModelTabelePrimerak(new ArrayList<>());
+        dkf.getjTablePrimerci().setModel(mtp);
         popuniComboBoxeve();
         pripremiFormu(mod);
         dkf.setVisible(true);

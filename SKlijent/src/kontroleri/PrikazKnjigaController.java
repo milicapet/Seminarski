@@ -57,19 +57,14 @@ public class PrikazKnjigaController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int red = pkf.getjTableKnjige().getSelectedRow();
-                if(red!=-1){
+                if (red != -1) {
                     ModelTabeleKnjige mtk = (ModelTabeleKnjige) pkf.getjTableKnjige().getModel();
                     Knjiga k = mtk.getLista().get(red);
                     List<Primerak> primerci = Komunikacija.getInstance().ucitajPrimerke(k.getSifraKnjige());
                     ModelTabelePrimerak mtp = new ModelTabelePrimerak(primerci);
                     pkf.getjTablePrimerci().setModel(mtp);
                 }
-                
-                
             }
-        
-         
-        
         });
     }
 

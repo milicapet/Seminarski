@@ -61,4 +61,14 @@ public class ModelTabelePrimerak extends AbstractTableModel {
         this.lista = lista;
     }
 
+    public void dodajPrimerak(Primerak p) {
+        lista.add(p);
+        fireTableDataChanged();
+    }
+
+    public void obrisiPrimerak(Primerak p) {
+        lista.remove(p);
+        fireTableDataChanged();
+    }
+
 }
