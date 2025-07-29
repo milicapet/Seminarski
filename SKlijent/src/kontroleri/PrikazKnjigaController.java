@@ -9,10 +9,13 @@ import domen.Primerak;
 import forme.PrikazKnjigaForma;
 import forme.model.ModelTabeleKnjige;
 import forme.model.ModelTabelePrimerak;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 
 /**
@@ -49,6 +52,26 @@ public class PrikazKnjigaController {
     }
 
     private void addActionListeners() {
+        pkf.addBtnObrisiPrimerakActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selRed = pkf.getjTablePrimerci().getSelectedRow();
+                if (selRed == -1) {
+                    JOptionPane.showMessageDialog(pkf, "Nije odabran primerak za brisanje", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    ModelTabelePrimerak mtp = (ModelTabelePrimerak) pkf.getjTablePrimerci().getModel();
+                    Primerak p = mtp.getLista().get(selRed);
+                    try {
+                        Komunikacija.getInstance().obrisiPrimerak(p);
+                        JOptionPane.showMessageDialog(null, "Sistem je izbrisao podatke o primerku", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                        mtp.obrisiPrimerak(p);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Sistem ne može da izbriše primerak", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    }
+                }                
+            }
+        });
+        
 
     }
 

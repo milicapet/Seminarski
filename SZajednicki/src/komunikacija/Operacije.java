@@ -20,5 +20,6 @@ public interface Operacije {
     public static final int UCITAJ_AUTORE = 8;
     public static final int UCITAJ_IZDAVACE = 9;
     public static final int DODAJ_KNJIGU = 10;
+    public static final int OBRISI_PRIMERAK = 11;
 
 }

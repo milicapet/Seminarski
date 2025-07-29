@@ -85,6 +85,10 @@ public class Primerak implements ApstraktniDomenskiObjekat {
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
         while (rs.next()) {
+            int sifraKnjige = rs.getInt("primerak.sifraKnjige");
+            Knjiga k = new Knjiga();
+            k.setSifraKnjige(sifraKnjige);
+            
             int sifraPrimerka = rs.getInt("primerak.sifraPrimerka");
             int godinaIzdanja = rs.getInt("primerak.godinaIzdanja");
             int brojIzdanja = rs.getInt("primerak.brojIzdanja");
@@ -95,6 +99,7 @@ public class Primerak implements ApstraktniDomenskiObjekat {
             Izdavac izdavac = new Izdavac(sifraIzdavaca, naziv, adresa);
 
             Primerak p = new Primerak();
+            p.setKnjiga(k);
             p.setSifraPrimerka(sifraPrimerka);
             p.setGodinaIzdanja(godinaIzdanja);
             p.setBrojIzdanja(brojIzdanja);

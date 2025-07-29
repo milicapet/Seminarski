@@ -150,4 +150,17 @@ public class Komunikacija {
         }
     }
 
+    public void obrisiPrimerak(Primerak p) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacije.OBRISI_PRIMERAK, p);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno obrisano");
+        } else {
+            System.out.println("Greska u brisanju");
+            ((Exception) odg.getOdgovor()).printStackTrace();
+            throw new Exception("GREŠKA");
+        }
+    }
+
 }
