@@ -17,6 +17,7 @@ import operacija.clanovi.KreirajClanaSO;
 import operacija.clanovi.ObrisiClanaSO;
 import operacija.clanovi.UcitajClanoveSO;
 import operacija.izdavaci.UcitajIzdavaceSO;
+import operacija.knjige.KreirajKnjiguSO;
 import operacija.knjige.UcitajKnjigeSO;
 import operacija.knjige.primerci.UcitajPrimerkeSO;
 import operacija.login.LoginOperacija;
@@ -95,6 +96,11 @@ public class Controller {
         operacija.izvrsi(new Izdavac(), "");
         System.out.println("KLASA Controller: " + operacija.getIzdavaci());
         return operacija.getIzdavaci();
+    }
+
+    public void dodajKnjigu(Knjiga k) throws Exception {
+        KreirajKnjiguSO operacija = new KreirajKnjiguSO();
+        operacija.izvrsi(k, null);
     }
 
 }

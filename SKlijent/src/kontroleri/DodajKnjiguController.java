@@ -58,26 +58,25 @@ public class DodajKnjiguController {
                 } else {
                     JOptionPane.showMessageDialog(dkf, "Nije selektovan red za brisanje! ", "GRESKA", JOptionPane.ERROR_MESSAGE);
                 }
-
             }
         });
         dkf.addBtnDodajKnjiguActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*
-                int brClanskeKarte = Integer.parseInt(dkf.getjTextFieldBrClanskeKarte().getText().trim());
-                String ime = dkf.getjTextFieldIme().getText().trim();
-                String prezime = dkf.getjTextFieldPrezime().getText().trim();
-                String adresa = dkf.getjTextFieldAdresa().getText().trim();
-                String brTel = dkf.getjTextFieldBrTel().getText().trim();
-                Clan c = new Clan(brClanskeKarte, ime, prezime, adresa, brTel);
+                int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
+                String naziv = dkf.getjTextFieldNaziv().getText().trim();
+                String opis = dkf.getjTextFieldOpis().getText().trim();
+                Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
+                ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
+                List<Primerak> primerci = mtp.getLista();
+                Knjiga k = new Knjiga(sifraKnjige, naziv, opis, primerci);                  
                 try {
-                    Komunikacija.getInstance().dodajClana(c);
-                    JOptionPane.showMessageDialog(dcf, "Sistem je kreirao člana", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                    Komunikacija.getInstance().dodajKnjigu(k);
+                    JOptionPane.showMessageDialog(dkf, "Sistem je kreirao knjigu.", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Sistem ne može da kreira člana", "GREŠKA", JOptionPane.ERROR_MESSAGE);
-                }*/
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da kreira knjigu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         dkf.addBtnIzmeniKnjiguActionListener(new ActionListener() {

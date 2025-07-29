@@ -21,4 +21,6 @@ public interface Repository<T> {
     void delete(T param) throws Exception;
 
     List<T> getAll();
+
+    int addReturnKey(T param) throws Exception;
 }

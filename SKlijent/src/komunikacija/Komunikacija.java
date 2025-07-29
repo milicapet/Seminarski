@@ -139,4 +139,15 @@ public class Komunikacija {
         return izdavaci;  
     }
 
+    public void dodajKnjigu(Knjiga k) {
+        Zahtev zahtev = new Zahtev(Operacije.DODAJ_KNJIGU, k);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno dodato");
+        } else {
+            System.out.println("Greska u brisanju");
+        }
+    }
+
 }
