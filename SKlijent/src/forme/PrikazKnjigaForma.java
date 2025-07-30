@@ -27,9 +27,17 @@ public class PrikazKnjigaForma extends javax.swing.JFrame {
     public JTable getjTablePrimerci() {
         return jTablePrimerci;
     }
-    
+
     public void addBtnObrisiPrimerakActionListener(ActionListener actionListener) {
         jButtonObrisiPrimerak.addActionListener(actionListener);
+    }
+
+    public void addBtnIzmeniPrimerakActionListener(ActionListener actionListener) {
+        jButtonIzmeniPrimerak.addActionListener(actionListener);
+    }
+
+    public void addBtnDodajPrimerakActionListener(ActionListener actionListener) {
+        jButtonDodajPrimerak.addActionListener(actionListener);
     }
 
     /**
@@ -47,6 +55,8 @@ public class PrikazKnjigaForma extends javax.swing.JFrame {
         jTablePrimerci = new javax.swing.JTable();
         jButtonIzmeni = new javax.swing.JButton();
         jButtonObrisiPrimerak = new javax.swing.JButton();
+        jButtonIzmeniPrimerak = new javax.swing.JButton();
+        jButtonDodajPrimerak = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +90,10 @@ public class PrikazKnjigaForma extends javax.swing.JFrame {
 
         jButtonObrisiPrimerak.setText("Obriši primerak");
 
+        jButtonIzmeniPrimerak.setText("Izmeni primerak");
+
+        jButtonDodajPrimerak.setText("Dodaj primerak");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,7 +109,13 @@ public class PrikazKnjigaForma extends javax.swing.JFrame {
                 .addComponent(jButtonIzmeni)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonObrisiPrimerak)
-                .addGap(334, 334, 334))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonIzmeniPrimerak)
+                .addGap(133, 133, 133))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonDodajPrimerak)
+                .addGap(221, 221, 221))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,15 +127,20 @@ public class PrikazKnjigaForma extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonIzmeni)
-                    .addComponent(jButtonObrisiPrimerak))
-                .addGap(78, 78, 78))
+                    .addComponent(jButtonObrisiPrimerak)
+                    .addComponent(jButtonIzmeniPrimerak))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonDodajPrimerak)
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonDodajPrimerak;
     private javax.swing.JButton jButtonIzmeni;
+    private javax.swing.JButton jButtonIzmeniPrimerak;
     private javax.swing.JButton jButtonObrisiPrimerak;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

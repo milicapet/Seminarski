@@ -19,6 +19,8 @@ import operacija.clanovi.UcitajClanoveSO;
 import operacija.izdavaci.UcitajIzdavaceSO;
 import operacija.knjige.KreirajKnjiguSO;
 import operacija.knjige.UcitajKnjigeSO;
+import operacija.knjige.primerci.IzmeniPrimerakSO;
+import operacija.knjige.primerci.KreirajPrimerakSO;
 import operacija.knjige.primerci.ObrisiPrimerakSO;
 import operacija.knjige.primerci.UcitajPrimerkeSO;
 import operacija.login.LoginOperacija;
@@ -107,6 +109,16 @@ public class Controller {
     public void obrisiPrimerak(Primerak p) throws Exception {
         ObrisiPrimerakSO operacija = new ObrisiPrimerakSO();
         operacija.izvrsi(p, null);
+    }
+
+    public void izmeniPrimerak(Primerak p1) throws Exception {
+        IzmeniPrimerakSO operacija = new IzmeniPrimerakSO();
+        operacija.izvrsi(p1, null);
+    }
+
+    public void dodajPrimerak(Primerak p2) throws Exception {
+        KreirajPrimerakSO operacija = new KreirajPrimerakSO();
+        operacija.izvrsi(p2, null);
     }
 
 }

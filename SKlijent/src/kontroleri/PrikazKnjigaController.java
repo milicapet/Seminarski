@@ -4,6 +4,7 @@
  */
 package kontroleri;
 
+import cordinator.Cordinator;
 import domen.Knjiga;
 import domen.Primerak;
 import forme.PrikazKnjigaForma;
@@ -68,11 +69,32 @@ public class PrikazKnjigaController {
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Sistem ne može da izbriše primerak", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                     }
-                }                
+                }
             }
         });
-        
+        pkf.addBtnIzmeniPrimerakActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selRed = pkf.getjTablePrimerci().getSelectedRow();
+                if (selRed == -1) {
+                    JOptionPane.showMessageDialog(pkf, "Nije odabran primerak za izmenu", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    ModelTabelePrimerak mtp = (ModelTabelePrimerak) pkf.getjTablePrimerci().getModel();
+                    Primerak p = mtp.getLista().get(selRed);
+                    Cordinator.getInstance().dodajParam("primerak", p);
+                    Cordinator.getInstance().otvoriIzmeniPrimerakFormu();                    
+                }
+            }
+        });
+        pkf.addBtnDodajPrimerakActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Cordinator.getInstance().dodajParam("primerak", p);
+                System.out.println("DUGME DODAJ PRIMERAK ");
+                Cordinator.getInstance().otvoriDodajPrimerakFormu();         
 
+            }
+        });
     }
 
     private void addMouseListeners() {

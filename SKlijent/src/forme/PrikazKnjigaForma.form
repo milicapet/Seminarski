@@ -35,7 +35,14 @@
               <Component id="jButtonIzmeni" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jButtonObrisiPrimerak" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="334" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButtonIzmeniPrimerak" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jButtonDodajPrimerak" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,8 +58,11 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonIzmeni" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonObrisiPrimerak" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonIzmeniPrimerak" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButtonDodajPrimerak" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,6 +118,16 @@
     <Component class="javax.swing.JButton" name="jButtonObrisiPrimerak">
       <Properties>
         <Property name="text" type="java.lang.String" value="Obri&#x161;i primerak"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonIzmeniPrimerak">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Izmeni primerak"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonDodajPrimerak">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Dodaj primerak"/>
       </Properties>
     </Component>
   </SubComponents>

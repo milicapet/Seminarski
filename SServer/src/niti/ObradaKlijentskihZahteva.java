@@ -102,6 +102,16 @@ public class ObradaKlijentskihZahteva extends Thread {
                     } catch (Exception e) {
                         odgovor.setOdgovor(e);
                     }
+                    break;
+                    case Operacije.IZMENI_PRIMERAK:
+                        Primerak p1 = (Primerak) zahtev.getParametar();
+                        Controller.getInstance().izmeniPrimerak(p1);
+                        odgovor.setOdgovor(null);
+                        break;
+                    case Operacije.DODAJ_PRIMERAK:
+                        Primerak p2 = (Primerak) zahtev.getParametar();
+                        Controller.getInstance().dodajPrimerak(p2);
+                        odgovor.setOdgovor(null);
                         break;
                     default:
                         System.out.println("GRESKA, TA OPERACIJA NE POSTOJI!");

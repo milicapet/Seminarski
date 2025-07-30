@@ -87,7 +87,7 @@ public class Komunikacija {
         if (odg.getOdgovor() == null) {
             System.out.println("Uspesno dodato");
         } else {
-            System.out.println("Greska u brisanju");
+            System.out.println("Greska u dodavanju");
         }
     }
 
@@ -146,7 +146,7 @@ public class Komunikacija {
         if (odg.getOdgovor() == null) {
             System.out.println("Uspesno dodato");
         } else {
-            System.out.println("Greska u brisanju");
+            System.out.println("Greska u dodavanju");
         }
     }
 
@@ -160,6 +160,30 @@ public class Komunikacija {
             System.out.println("Greska u brisanju");
             ((Exception) odg.getOdgovor()).printStackTrace();
             throw new Exception("GREŠKA");
+        }
+    }
+
+    public void izmeniPrimerak(Primerak p) {
+        Zahtev zahtev = new Zahtev(Operacije.IZMENI_PRIMERAK, p);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno izmenjeno");
+            Cordinator.getInstance().osveziFormu();
+        } else {
+            System.out.println("Greska u izmeni");
+        }
+        
+    }
+
+    public void dodajPrimerak(Primerak p) {
+        Zahtev zahtev = new Zahtev(Operacije.DODAJ_PRIMERAK, p);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno dodato");
+        } else {
+            System.out.println("Greska u dodavanju");
         }
     }
 
