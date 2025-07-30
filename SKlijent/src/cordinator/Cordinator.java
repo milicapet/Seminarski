@@ -116,5 +116,9 @@ public class Cordinator {
         dodajPrimerakController.otvoriFormu(FormaMod.DODAJ);
     }
 
+    public void otvoriDodajKnjiguFormu(FormaMod formaMod) {
+        dodajKnjiguController = new DodajKnjiguController(new DodajKnjiguForma());
+        dodajKnjiguController.otvoriFormu(formaMod);
+    }
 
 }

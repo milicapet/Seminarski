@@ -7,6 +7,7 @@ package kontroleri;
 import cordinator.Cordinator;
 import domen.Knjiga;
 import domen.Primerak;
+import forme.FormaMod;
 import forme.PrikazKnjigaForma;
 import forme.model.ModelTabeleKnjige;
 import forme.model.ModelTabelePrimerak;
@@ -90,9 +91,23 @@ public class PrikazKnjigaController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Cordinator.getInstance().dodajParam("primerak", p);
-                System.out.println("DUGME DODAJ PRIMERAK ");
                 Cordinator.getInstance().otvoriDodajPrimerakFormu();         
-
+            }
+        });
+        pkf.addBtnIzmeniKnjiguActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selRed = pkf.getjTableKnjige().getSelectedRow();
+                if (selRed == -1) {
+                    JOptionPane.showMessageDialog(pkf, "Nije odabrana knjiga za izmenu", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    ModelTabeleKnjige mtk = (ModelTabeleKnjige) pkf.getjTableKnjige().getModel();
+                    Knjiga k = mtk.getLista().get(selRed);
+                    List<Primerak> primerci =Komunikacija.getInstance().ucitajPrimerke(k.getSifraKnjige());
+                    k.setPrimerci(primerci);                    
+                    Cordinator.getInstance().dodajParam("knjiga_za_izmenu", k);
+                    Cordinator.getInstance().otvoriDodajKnjiguFormu(FormaMod.IZMENI);
+                }
             }
         });
     }

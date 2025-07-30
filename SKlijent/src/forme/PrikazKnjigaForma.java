@@ -39,6 +39,10 @@ public class PrikazKnjigaForma extends javax.swing.JFrame {
     public void addBtnDodajPrimerakActionListener(ActionListener actionListener) {
         jButtonDodajPrimerak.addActionListener(actionListener);
     }
+    
+    public void addBtnIzmeniKnjiguActionListener(ActionListener actionListener) {
+        jButtonIzmeniKnjigu.addActionListener(actionListener);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +57,7 @@ public class PrikazKnjigaForma extends javax.swing.JFrame {
         jTableKnjige = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTablePrimerci = new javax.swing.JTable();
-        jButtonIzmeni = new javax.swing.JButton();
+        jButtonIzmeniKnjigu = new javax.swing.JButton();
         jButtonObrisiPrimerak = new javax.swing.JButton();
         jButtonIzmeniPrimerak = new javax.swing.JButton();
         jButtonDodajPrimerak = new javax.swing.JButton();
@@ -86,7 +90,7 @@ public class PrikazKnjigaForma extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTablePrimerci);
 
-        jButtonIzmeni.setText("Izmeni knjigu");
+        jButtonIzmeniKnjigu.setText("Izmeni knjigu");
 
         jButtonObrisiPrimerak.setText("Obriši primerak");
 
@@ -106,7 +110,7 @@ public class PrikazKnjigaForma extends javax.swing.JFrame {
                 .addContainerGap(53, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
-                .addComponent(jButtonIzmeni)
+                .addComponent(jButtonIzmeniKnjigu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonObrisiPrimerak)
                 .addGap(18, 18, 18)
@@ -126,7 +130,7 @@ public class PrikazKnjigaForma extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonIzmeni)
+                    .addComponent(jButtonIzmeniKnjigu)
                     .addComponent(jButtonObrisiPrimerak)
                     .addComponent(jButtonIzmeniPrimerak))
                 .addGap(18, 18, 18)
@@ -139,7 +143,7 @@ public class PrikazKnjigaForma extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDodajPrimerak;
-    private javax.swing.JButton jButtonIzmeni;
+    private javax.swing.JButton jButtonIzmeniKnjigu;
     private javax.swing.JButton jButtonIzmeniPrimerak;
     private javax.swing.JButton jButtonObrisiPrimerak;
     private javax.swing.JScrollPane jScrollPane1;

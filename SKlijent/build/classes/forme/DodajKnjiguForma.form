@@ -46,18 +46,21 @@
                               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                               <Component id="jComboBoxAutori" min="-2" pref="414" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jTextFieldOpis" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jTextFieldOpis" min="-2" pref="855" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace min="0" pref="9" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
               <Component id="jButtonDodajKnjigu" min="-2" pref="144" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
               <Component id="jButtonIzmeniKnjigu" min="-2" pref="144" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="272" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,7 +98,7 @@
                   <Component id="jButtonDodajKnjigu" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                   <Component id="jButtonIzmeniKnjigu" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <EmptySpace pref="52" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

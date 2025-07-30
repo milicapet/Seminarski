@@ -4,7 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/milic/Desktop/Seminarski/SKlijent/src/komunikacija/Komunikacija.java</file>
-            <file>file:/C:/Users/milic/Desktop/Seminarski/SKlijent/src/kontroleri/DodajPrimerakController.java</file>
+            <file>file:/C:/Users/milic/Desktop/Seminarski/SKlijent/src/kontroleri/DodajKnjiguController.java</file>
+            <file>file:/C:/Users/milic/Desktop/Seminarski/SKlijent/src/kontroleri/PrikazKnjigaController.java</file>
         </group>
     </open-files>
 </project-private>

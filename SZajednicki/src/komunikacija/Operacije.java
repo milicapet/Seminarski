@@ -23,5 +23,6 @@ public interface Operacije {
     public static final int OBRISI_PRIMERAK = 11;
     public static final int IZMENI_PRIMERAK = 12;
     public static final int DODAJ_PRIMERAK = 13;
+    public static final int IZMENI_KNJIGU = 14;
 
 }

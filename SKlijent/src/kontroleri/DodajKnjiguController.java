@@ -4,6 +4,7 @@
  */
 package kontroleri;
 
+import cordinator.Cordinator;
 import domen.Autor;
 import domen.Izdavac;
 import domen.Knjiga;
@@ -69,7 +70,7 @@ public class DodajKnjiguController {
                 Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
                 ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
                 List<Primerak> primerci = mtp.getLista();
-                Knjiga k = new Knjiga(sifraKnjige, naziv, opis, primerci);                  
+                Knjiga k = new Knjiga(sifraKnjige, naziv, opis, primerci);
                 try {
                     Komunikacija.getInstance().dodajKnjigu(k);
                     JOptionPane.showMessageDialog(dkf, "Sistem je kreirao knjigu.", "USPEH", JOptionPane.INFORMATION_MESSAGE);
@@ -81,20 +82,21 @@ public class DodajKnjiguController {
         });
         dkf.addBtnIzmeniKnjiguActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {/*
-                int brClanskeKarte = Integer.parseInt(dcf.getjTextFieldBrClanskeKarte().getText().trim());
-                String ime = dkf.getjTextFieldIme().getText().trim();
-                String prezime = dkf.getjTextFieldPrezime().getText().trim();
-                String adresa = dkf.getjTextFieldAdresa().getText().trim();
-                String brTel = dkf.getjTextFieldBrTel().getText().trim();
-                Clan c = new Clan(brClanskeKarte, ime, prezime, adresa, brTel);
+            public void actionPerformed(ActionEvent e) {
+                int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
+                String naziv = dkf.getjTextFieldNaziv().getText().trim();
+                String opis = dkf.getjTextFieldOpis().getText().trim();
+                Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
+                ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
+                List<Primerak> primerci = mtp.getLista();
+                Knjiga k = new Knjiga(sifraKnjige, naziv, opis, primerci);
                 try {
-                    Komunikacija.getInstance().izmeniClana(c);
-                    JOptionPane.showMessageDialog(null, "Sistem je zapamtio člana", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                    Komunikacija.getInstance().izmeniKnjigu(k);
+                    JOptionPane.showMessageDialog(null, "Sistem je zapamtio knjigu", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Sistem ne može da izmeni člana", "GREŠKA", JOptionPane.ERROR_MESSAGE);
-                }*/
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da izmeni knjigu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -119,13 +121,15 @@ public class DodajKnjiguController {
             case IZMENI:
                 dkf.getjButtonDodajKnjigu().setVisible(false);
                 dkf.getjButtonIzmeniKnjigu().setVisible(true);
-                dkf.getjButtonIzmeniKnjigu().setEnabled(true);/*
-                Clan c = (Clan) Cordinator.getInstance().vratiParam("clan");
-                dkf.getjTextFieldBrClanskeKarte().setText(String.valueOf(c.getBrojClanskeKarte()));
-                dkf.getjTextFieldIme().setText(c.getIme());
-                dkf.getjTextFieldPrezime().setText(c.getPrezime());
-                dkf.getjTextFieldAdresa().setText(c.getAdresa());
-                dkf.getjTextFieldBrTel().setText(c.getBrojTelefona());*/
+                dkf.getjButtonIzmeniKnjigu().setEnabled(true);
+                Knjiga k = (Knjiga) Cordinator.getInstance().vratiParam("knjiga_za_izmenu");
+                dkf.getjTextFieldSifraKnjige().setText(String.valueOf(k.getSifraKnjige()));
+                dkf.getjTextFieldNaziv().setText(k.getNaziv());
+                dkf.getjTextFieldOpis().setText(k.getOpis());
+                //dkf.getjComboBoxAutori().setSelectedItem(k.get);
+                ModelTabelePrimerak mtp = new ModelTabelePrimerak(k.getPrimerci());
+                dkf.getjTablePrimerci().setModel(mtp);                
+                
                 break;
             default:
                 throw new AssertionError();

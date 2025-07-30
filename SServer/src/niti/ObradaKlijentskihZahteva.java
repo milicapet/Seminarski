@@ -113,6 +113,11 @@ public class ObradaKlijentskihZahteva extends Thread {
                         Controller.getInstance().dodajPrimerak(p2);
                         odgovor.setOdgovor(null);
                         break;
+                    case Operacije.IZMENI_KNJIGU:
+                        Knjiga k1 = (Knjiga) zahtev.getParametar();
+                        Controller.getInstance().izmeniKnjigu(k1);
+                        odgovor.setOdgovor(null);
+                        break;
                     default:
                         System.out.println("GRESKA, TA OPERACIJA NE POSTOJI!");
                 }

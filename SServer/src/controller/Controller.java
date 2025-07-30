@@ -121,4 +121,8 @@ public class Controller {
         operacija.izvrsi(p2, null);
     }
 
+    public void izmeniKnjigu(Knjiga k1) {
+        
+    }
+
 }

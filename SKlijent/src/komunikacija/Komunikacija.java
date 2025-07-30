@@ -172,8 +172,7 @@ public class Komunikacija {
             Cordinator.getInstance().osveziFormu();
         } else {
             System.out.println("Greska u izmeni");
-        }
-        
+        }        
     }
 
     public void dodajPrimerak(Primerak p) {
@@ -184,6 +183,18 @@ public class Komunikacija {
             System.out.println("Uspesno dodato");
         } else {
             System.out.println("Greska u dodavanju");
+        }
+    }
+
+    public void izmeniKnjigu(Knjiga k) {
+        Zahtev zahtev = new Zahtev(Operacije.IZMENI_KNJIGU, k);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno izmenjeno");
+            Cordinator.getInstance().osveziFormu();
+        } else {
+            System.out.println("Greska u izmeni");
         }
     }
 
