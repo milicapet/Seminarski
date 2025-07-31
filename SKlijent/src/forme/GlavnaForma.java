@@ -106,9 +106,19 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenuPozajmica.setText("Pozajmica");
 
         jMenuItemDodajPozajmicu.setText("Dodaj");
+        jMenuItemDodajPozajmicu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDodajPozajmicuActionPerformed(evt);
+            }
+        });
         jMenuPozajmica.add(jMenuItemDodajPozajmicu);
 
         jMenuItemPregledPozajmice.setText("Pregled");
+        jMenuItemPregledPozajmice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPregledPozajmiceActionPerformed(evt);
+            }
+        });
         jMenuPozajmica.add(jMenuItemPregledPozajmice);
 
         jMenuBar1.add(jMenuPozajmica);
@@ -161,6 +171,14 @@ public class GlavnaForma extends javax.swing.JFrame {
     private void jMenuItemDodajKnjiguActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDodajKnjiguActionPerformed
         Cordinator.getInstance().otvoriDodajKnjiguFormu();
     }//GEN-LAST:event_jMenuItemDodajKnjiguActionPerformed
+
+    private void jMenuItemDodajPozajmicuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDodajPozajmicuActionPerformed
+        Cordinator.getInstance().otvoriDodajPozajmicuFormu();
+    }//GEN-LAST:event_jMenuItemDodajPozajmicuActionPerformed
+
+    private void jMenuItemPregledPozajmiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPregledPozajmiceActionPerformed
+        Cordinator.getInstance().otvoriPrikazPozajmicaFormu();
+    }//GEN-LAST:event_jMenuItemPregledPozajmiceActionPerformed
 
     public JLabel getjLabelUlogovani() {
         return jLabelUlogovani;

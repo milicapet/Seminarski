@@ -59,11 +59,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dodaj"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemDodajPozajmicuActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPregledPozajmice">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pregled"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemPregledPozajmiceActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

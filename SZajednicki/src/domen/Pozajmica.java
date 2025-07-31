@@ -4,8 +4,8 @@
  */
 package domen;
 
-import java.io.Serializable;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -74,7 +74,26 @@ public class Pozajmica implements ApstraktniDomenskiObjekat {
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        while (rs.next()) {
+            int sifraKnjige = rs.getInt("pozajmica.sifraKnjige");
+            int sifraPrimerka = rs.getInt("pozajmica.sifraPrimerka");
+            int brojClanskeKarte = rs.getInt("pozajmica.brojClanskeKarte");
+            java.sql.Date datUzSQL = rs.getDate("pozajmica.datumUzimanja");
+            java.sql.Date datVrSQL = rs.getDate("pozajmica.datumVracanja");
+            java.util.Date datUzUtil = new java.util.Date(datUzSQL.getTime());
+            java.util.Date datVrUtil = datVrSQL != null ? new java.util.Date(datVrSQL.getTime()) : null;
+            Primerak primerak = new Primerak();
+            primerak.setSifraPrimerka(sifraPrimerka);
+            Knjiga knjiga = new Knjiga();
+            knjiga.setSifraKnjige(sifraKnjige);
+            primerak.setKnjiga(knjiga);
+            Clan clan = new Clan();
+            clan.setBrojClanskeKarte(brojClanskeKarte);
+            Pozajmica p = new Pozajmica(primerak, clan, datUzUtil, datVrUtil);
+            lista.add(p);
+        }
+        return lista;
     }
 
     @Override

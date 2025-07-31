@@ -10,6 +10,7 @@ import domen.Bibliotekar;
 import domen.Clan;
 import domen.Izdavac;
 import domen.Knjiga;
+import domen.Pozajmica;
 import domen.Primerak;
 import java.util.List;
 import operacija.autori.UcitajAutorKnjigeSO;
@@ -27,6 +28,7 @@ import operacija.knjige.primerci.KreirajPrimerakSO;
 import operacija.knjige.primerci.ObrisiPrimerakSO;
 import operacija.knjige.primerci.UcitajPrimerkeSO;
 import operacija.login.LoginOperacija;
+import operacija.pozajmice.UcitajPozajmiceSO;
 
 /**
  *
@@ -133,6 +135,13 @@ public class Controller {
         UcitajAutorKnjigeSO operacija = new UcitajAutorKnjigeSO();
         operacija.izvrsi(new AutorKnjiga(), "");
         return operacija.getAutorKnjige();
+    }
+
+    public List<Pozajmica> ucitajPozajmice() throws Exception {
+        UcitajPozajmiceSO operacija = new UcitajPozajmiceSO();
+        operacija.izvrsi(new Pozajmica(), "");
+        System.out.println("CONTROLLER " + operacija.getPozajmice());
+        return operacija.getPozajmice();
     }
 
 }

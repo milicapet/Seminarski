@@ -11,6 +11,7 @@ import domen.Bibliotekar;
 import domen.Clan;
 import domen.Izdavac;
 import domen.Knjiga;
+import domen.Pozajmica;
 import domen.Primerak;
 import java.net.Socket;
 import java.util.List;
@@ -119,9 +120,14 @@ public class ObradaKlijentskihZahteva extends Thread {
                         Controller.getInstance().izmeniKnjigu(k1);
                         odgovor.setOdgovor(null);
                         break;
-                        case Operacije.UCITAJ_AUTORKNJIGE:
+                    case Operacije.UCITAJ_AUTORKNJIGE:
                         List<AutorKnjiga> autorKnjige = Controller.getInstance().ucitajAutorKnjige();
                         odgovor.setOdgovor(autorKnjige);
+                        break;
+                    case Operacije.UCITAJ_POZAJMICE:
+                        List<Pozajmica> pozajmice = Controller.getInstance().ucitajPozajmice();
+                        odgovor.setOdgovor(pozajmice);
+                        System.out.println("OKZ " + pozajmice);
                         break;
                     default:
                         System.out.println("GRESKA, TA OPERACIJA NE POSTOJI!");

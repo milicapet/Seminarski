@@ -11,6 +11,7 @@ import domen.Bibliotekar;
 import domen.Clan;
 import domen.Izdavac;
 import domen.Knjiga;
+import domen.Pozajmica;
 import domen.Primerak;
 import java.io.IOException;
 import java.net.Socket;
@@ -205,6 +206,15 @@ public class Komunikacija {
         Odgovor odg = (Odgovor) primalac.primi();
         autorKnjige = (List<AutorKnjiga>) odg.getOdgovor();
         return autorKnjige;  
+    }
+
+    public List<Pozajmica> ucitajPozajmice() {
+        List<Pozajmica> pozajmice = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_POZAJMICE, "");
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        pozajmice = (List<Pozajmica>) odg.getOdgovor();
+        return pozajmice;  
     }
 
 }

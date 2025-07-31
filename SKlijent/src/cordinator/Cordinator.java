@@ -7,21 +7,25 @@ package cordinator;
 import domen.Bibliotekar;
 import forme.DodajClanaForma;
 import forme.DodajKnjiguForma;
+import forme.DodajPozajmicuForma;
 import forme.DodajPrimerakForma;
 import forme.FormaMod;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazClanovaForma;
 import forme.PrikazKnjigaForma;
+import forme.PrikazPozajmicaForma;
 import java.util.HashMap;
 import java.util.Map;
 import kontroleri.DodajClanaController;
 import kontroleri.DodajKnjiguController;
+import kontroleri.DodajPozajmicuController;
 import kontroleri.DodajPrimerakController;
 import kontroleri.GlavnaFormaController;
 import kontroleri.LoginController;
 import kontroleri.PrikazClanovaController;
 import kontroleri.PrikazKnjigaController;
+import kontroleri.PrikazPozajmicaController;
 
 /**
  *
@@ -39,7 +43,9 @@ public class Cordinator {
     private PrikazKnjigaController prikazKnjigaController;
     private DodajKnjiguController dodajKnjiguController;
     private DodajPrimerakController dodajPrimerakController;
-
+    private DodajPozajmicuController dodajPozajmicuController;
+    private PrikazPozajmicaController prikazPozajmicaController;            
+    
     private Cordinator() {
         parametri = new HashMap<>();
     }
@@ -123,6 +129,16 @@ public class Cordinator {
 
     public void osveziFormuPrikazKnjiga() {
         prikazKnjigaController.osveziFormu();
+    }
+
+    public void otvoriDodajPozajmicuFormu() {
+        dodajPozajmicuController = new DodajPozajmicuController(new DodajPozajmicuForma());
+        dodajPozajmicuController.otvoriFormu(FormaMod.DODAJ);
+    }
+
+    public void otvoriPrikazPozajmicaFormu() {
+        prikazPozajmicaController = new PrikazPozajmicaController(new PrikazPozajmicaForma());
+        prikazPozajmicaController.otvoriFormu();
     }
 
 }
