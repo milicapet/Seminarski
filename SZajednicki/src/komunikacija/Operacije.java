@@ -26,5 +26,6 @@ public interface Operacije {
     public static final int IZMENI_KNJIGU = 14;
     public static final int UCITAJ_AUTORKNJIGE = 15;
     public static final int UCITAJ_POZAJMICE = 16;
+    public static final int OBRISI_POZAJMICU = 17;
 
 }

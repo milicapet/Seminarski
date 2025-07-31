@@ -71,4 +71,9 @@ public class ModelTabelePozajmica extends AbstractTableModel {
         return kolone[column];
     }
 
+    public void obrisiPozajmicu(Pozajmica p) {
+        lista.remove(p);
+        fireTableDataChanged();
+    }
+
 }

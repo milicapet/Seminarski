@@ -4,6 +4,7 @@
  */
 package forme;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
@@ -30,6 +31,14 @@ public class PrikazPozajmicaForma extends javax.swing.JFrame {
 
     public JTable getjTablePozajmice() {
         return jTablePozajmice;
+    }
+    
+    public void addBtnObrisiActionListener(ActionListener actionListener) {
+        jButtonObrisi.addActionListener(actionListener);
+    }
+
+    public void addBtnIzmeniActionListener(ActionListener actionListener) {
+        jButtonIzmeni.addActionListener(actionListener);
     }
 
     /**

@@ -7,7 +7,10 @@ package kontroleri;
 import domen.Pozajmica;
 import forme.PrikazPozajmicaForma;
 import forme.model.ModelTabelePozajmica;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 
 /**
@@ -40,26 +43,26 @@ public class PrikazPozajmicaController {
         ppf.getjTablePozajmice().setModel(mtp);
     }
 
-    private void addActionListeners() {/*
-        pkf.addBtnObrisiPrimerakActionListener(new ActionListener() {
+    private void addActionListeners() {
+        ppf.addBtnObrisiActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int selRed = pkf.getjTablePrimerci().getSelectedRow();
+                int selRed = ppf.getjTablePozajmice().getSelectedRow();
                 if (selRed == -1) {
-                    JOptionPane.showMessageDialog(pkf, "Nije odabran primerak za brisanje", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(ppf, "Nije odabrana pozajmica za brisanje", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    ModelTabelePrimerak mtp = (ModelTabelePrimerak) pkf.getjTablePrimerci().getModel();
-                    Primerak p = mtp.getLista().get(selRed);
+                    ModelTabelePozajmica mtp = (ModelTabelePozajmica) ppf.getjTablePozajmice().getModel();
+                    Pozajmica p = mtp.getLista().get(selRed);
                     try {
-                        Komunikacija.getInstance().obrisiPrimerak(p);
-                        JOptionPane.showMessageDialog(null, "Sistem je izbrisao podatke o primerku", "USPEH", JOptionPane.INFORMATION_MESSAGE);
-                        mtp.obrisiPrimerak(p);
+                        Komunikacija.getInstance().obrisiPozajmicu(p);
+                        JOptionPane.showMessageDialog(null, "Sistem je izbrisao podatke o pozajmici", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                        mtp.obrisiPozajmicu(p);
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Sistem ne može da izbriše primerak", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
-        });
+        });/*
                pkf.addBtnIzmeniKnjiguActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,7 +79,7 @@ public class PrikazPozajmicaController {
                 }
             }
         });
-        */
+         */
     }
 
     private void addMouseListeners() {/*

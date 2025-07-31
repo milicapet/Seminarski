@@ -73,9 +73,9 @@ public class Primerak implements ApstraktniDomenskiObjekat {
 
     @Override
     public String toString() {
-        return "Primerak{" + "knjiga=" + knjiga + ", brojIzdanja=" + brojIzdanja + ", izdavac=" + izdavac + '}';
+        return sifraPrimerka + ", " + godinaIzdanja + ", " + brojIzdanja + ", " + izdavac + '}';
     }
-
+    
     @Override
     public String vratiNazivTabele() {
         return "primerak";

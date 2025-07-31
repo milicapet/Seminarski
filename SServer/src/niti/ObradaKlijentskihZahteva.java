@@ -129,6 +129,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setOdgovor(pozajmice);
                         System.out.println("OKZ " + pozajmice);
                         break;
+                    case Operacije.OBRISI_POZAJMICU:
+                        try {
+                        Pozajmica p = (Pozajmica) zahtev.getParametar();
+                        Controller.getInstance().obrisiPozajmicu(p);
+                        odgovor.setOdgovor(null);
+                    } catch (Exception e) {
+                        odgovor.setOdgovor(e);
+                    }
+                    break;
                     default:
                         System.out.println("GRESKA, TA OPERACIJA NE POSTOJI!");
                 }

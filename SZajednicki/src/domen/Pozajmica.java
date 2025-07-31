@@ -109,9 +109,10 @@ public class Pozajmica implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiPrimarniKljuc() {
+        java.sql.Date sqlDatUz = new java.sql.Date(datumUzimanja.getTime());
         return "pozajmica.sifraKnjige=" + primerak.getKnjiga().getSifraKnjige() + " AND pozajmica.sifraPrimerka="
                 + primerak.getSifraPrimerka() + " AND pozajmica.brojClanskeKarte=" + clan.getBrojClanskeKarte()
-                + " AND pozajmica.datumUzimanja=" + datumUzimanja;
+                + " AND pozajmica.datumUzimanja='" + sqlDatUz + "'";
     }
 
     @Override

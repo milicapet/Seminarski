@@ -8,6 +8,7 @@ import cordinator.Cordinator;
 import domen.Clan;
 import domen.Knjiga;
 import domen.Pozajmica;
+import domen.Primerak;
 import forme.DodajPozajmicuForma;
 import forme.FormaMod;
 import java.awt.event.ActionEvent;
@@ -29,6 +30,20 @@ public class DodajPozajmicuController {
     }
 
     private void addActionListeners() {
+        dpf.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Knjiga odabranaKnjiga = (Knjiga) dpf.getjComboBoxKnjige().getSelectedItem();
+                if (odabranaKnjiga != null) {
+                    dpf.getjComboBoxPrimerci().removeAllItems();
+                    List<Primerak> primerci = Komunikacija.getInstance().ucitajPrimerke(odabranaKnjiga.getSifraKnjige());
+                    for (Primerak p : primerci) {
+                        dpf.getjComboBoxPrimerci().addItem(p);
+                    }
+                }
+            }
+        });
+
         dpf.addBtnDodajActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {/*
