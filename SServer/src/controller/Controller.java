@@ -5,12 +5,14 @@
 package controller;
 
 import domen.Autor;
+import domen.AutorKnjiga;
 import domen.Bibliotekar;
 import domen.Clan;
 import domen.Izdavac;
 import domen.Knjiga;
 import domen.Primerak;
 import java.util.List;
+import operacija.autori.UcitajAutorKnjigeSO;
 import operacija.autori.UcitajAutoreSO;
 import operacija.clanovi.IzmeniClanaSO;
 import operacija.clanovi.KreirajClanaSO;
@@ -125,6 +127,12 @@ public class Controller {
     public void izmeniKnjigu(Knjiga k1) throws Exception {
         IzmeniKnjiguSO operacija = new IzmeniKnjiguSO();
         operacija.izvrsi(k1, null);
+    }
+
+    public List<AutorKnjiga> ucitajAutorKnjige() throws Exception {
+        UcitajAutorKnjigeSO operacija = new UcitajAutorKnjigeSO();
+        operacija.izvrsi(new AutorKnjiga(), "");
+        return operacija.getAutorKnjige();
     }
 
 }

@@ -6,6 +6,7 @@ package niti;
 
 import controller.Controller;
 import domen.Autor;
+import domen.AutorKnjiga;
 import domen.Bibliotekar;
 import domen.Clan;
 import domen.Izdavac;
@@ -117,6 +118,10 @@ public class ObradaKlijentskihZahteva extends Thread {
                         Knjiga k1 = (Knjiga) zahtev.getParametar();
                         Controller.getInstance().izmeniKnjigu(k1);
                         odgovor.setOdgovor(null);
+                        break;
+                        case Operacije.UCITAJ_AUTORKNJIGE:
+                        List<AutorKnjiga> autorKnjige = Controller.getInstance().ucitajAutorKnjige();
+                        odgovor.setOdgovor(autorKnjige);
                         break;
                     default:
                         System.out.println("GRESKA, TA OPERACIJA NE POSTOJI!");

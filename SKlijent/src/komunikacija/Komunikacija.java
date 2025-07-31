@@ -6,6 +6,7 @@ package komunikacija;
 
 import cordinator.Cordinator;
 import domen.Autor;
+import domen.AutorKnjiga;
 import domen.Bibliotekar;
 import domen.Clan;
 import domen.Izdavac;
@@ -195,6 +196,15 @@ public class Komunikacija {
         } else {
             System.out.println("Greska u izmeni");
         }
+    }
+
+    public List<AutorKnjiga> ucitajAutorKnjige() {
+        List<AutorKnjiga> autorKnjige = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_AUTORKNJIGE, "");
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        autorKnjige = (List<AutorKnjiga>) odg.getOdgovor();
+        return autorKnjige;  
     }
 
 }

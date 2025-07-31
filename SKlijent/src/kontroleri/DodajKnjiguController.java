@@ -66,7 +66,7 @@ public class DodajKnjiguController {
             public void actionPerformed(ActionEvent e) {
                 int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
                 String naziv = dkf.getjTextFieldNaziv().getText().trim();
-                String opis = dkf.getjTextFieldOpis().getText().trim();
+                String opis = dkf.getjTextAreaOpis().getText().trim();
                 Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
                 ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
                 List<Primerak> primerci = mtp.getLista();
@@ -85,7 +85,7 @@ public class DodajKnjiguController {
             public void actionPerformed(ActionEvent e) {                
                     int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
                     String naziv = dkf.getjTextFieldNaziv().getText().trim();
-                    String opis = dkf.getjTextFieldOpis().getText().trim();
+                    String opis = dkf.getjTextAreaOpis().getText().trim();
                     Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
                     ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
                     List<Primerak> primerci = mtp.getLista();
@@ -127,7 +127,7 @@ public class DodajKnjiguController {
                 Knjiga k = (Knjiga) Cordinator.getInstance().vratiParam("knjiga_za_izmenu");
                 dkf.getjTextFieldSifraKnjige().setText(String.valueOf(k.getSifraKnjige()));
                 dkf.getjTextFieldNaziv().setText(k.getNaziv());
-                dkf.getjTextFieldOpis().setText(k.getOpis());
+                dkf.getjTextAreaOpis().setText(k.getOpis());
                 //dkf.getjComboBoxAutori().setSelectedItem(k.get);
                 ModelTabelePrimerak mtp = new ModelTabelePrimerak(k.getPrimerci());
                 dkf.getjTablePrimerci().setModel(mtp);

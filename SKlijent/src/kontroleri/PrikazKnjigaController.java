@@ -5,6 +5,7 @@
 package kontroleri;
 
 import cordinator.Cordinator;
+import domen.Autor;
 import domen.Knjiga;
 import domen.Primerak;
 import forme.FormaMod;
@@ -44,6 +45,13 @@ public class PrikazKnjigaController {
     }
 
     private void pripremiFormu() {
+        List<Autor> autori = Komunikacija.getInstance().ucitajAutore();
+        pkf.getjComboBoxAutori().removeAllItems();
+        for (Autor a : autori) {
+            pkf.getjComboBoxAutori().addItem(a);
+        }
+        pkf.getjComboBoxAutori().addItem(null);
+        
         List<Knjiga> knjige = Komunikacija.getInstance().ucitajKnjige();
         ModelTabeleKnjige mtk = new ModelTabeleKnjige(knjige);
         pkf.getjTableKnjige().setModel(mtk);
@@ -108,6 +116,22 @@ public class PrikazKnjigaController {
                     Cordinator.getInstance().dodajParam("knjiga_za_izmenu", k);
                     Cordinator.getInstance().otvoriDodajKnjiguFormu(FormaMod.IZMENI);
                 }
+            }
+        });
+        pkf.addBtnPretraziActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String sifraKnjige = pkf.getjTextFieldSifraKnjige().getText().trim();
+                String naziv = pkf.getjTextFieldNaziv().getText().trim();
+                Autor autor = (Autor) pkf.getjComboBoxAutori().getSelectedItem();
+                ModelTabeleKnjige mtk = (ModelTabeleKnjige) pkf.getjTableKnjige().getModel();
+                mtk.pretrazi(sifraKnjige, naziv, autor);
+            }
+        });
+        pkf.addBtnResetujActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pripremiFormu();
             }
         });
     }

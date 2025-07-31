@@ -4,9 +4,13 @@
  */
 package forme.model;
 
+import domen.Autor;
+import domen.AutorKnjiga;
 import domen.Knjiga;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import komunikacija.Komunikacija;
 
 /**
  *
@@ -15,10 +19,12 @@ import javax.swing.table.AbstractTableModel;
 public class ModelTabeleKnjige extends AbstractTableModel {
 
     List<Knjiga> lista;
+    List<AutorKnjiga> autoriKnjige;
     String[] kolone = {"sifraKnjige", "naziv", "opis"};
 
     public ModelTabeleKnjige(List<Knjiga> lista) {
         this.lista = lista;
+        autoriKnjige = Komunikacija.getInstance().ucitajAutorKnjige();
     }
 
     @Override
@@ -57,6 +63,46 @@ public class ModelTabeleKnjige extends AbstractTableModel {
 
     public void setLista(List<Knjiga> lista) {
         this.lista = lista;
+    }
+
+    public void pretrazi(String sifraKnjige, String naziv, Autor autor) {
+        System.out.println("LISTA ORIGINAL" + lista);
+        List<Knjiga> filtriraneKnjige = new ArrayList<>();
+        for (Knjiga k : lista) {
+            if (sifraKnjige != null && !sifraKnjige.isEmpty()) {
+                if (!String.valueOf(k.getSifraKnjige()).contains(sifraKnjige)) {
+                    continue;
+                }
+            }
+            if (naziv != null && !naziv.isEmpty()) {
+                if (!k.getNaziv().toLowerCase().contains(naziv.toLowerCase())) {
+                    continue;
+                }
+            }
+            if (autor != null) {
+                boolean postojiVeza = false;
+                for (AutorKnjiga ak : autoriKnjige) {
+                    if (ak.getKnjiga().getSifraKnjige() == k.getSifraKnjige()
+                            && ak.getAutor().getSifraAutora() == autor.getSifraAutora()) {
+                        postojiVeza = true;
+                        break;
+                    }
+                }
+                if (!postojiVeza) {
+                    continue; // preskoči knjigu ako nema vezu s autorom
+                }
+            }
+            filtriraneKnjige.add(k);
+        }
+        lista = filtriraneKnjige;
+        System.out.println("FILTRIRANA LISTA " + filtriraneKnjige);
+        fireTableDataChanged();
+        /*List<Knjiga> filteredList = lista.stream()
+                .filter(k -> (sifraKnjige == null || sifraKnjige.isEmpty()) || (String.valueOf(k.getSifraKnjige())).contains(sifraKnjige))
+                .filter(k -> (naziv == null || naziv.isEmpty() || k.getNaziv().toLowerCase().contains(naziv.toLowerCase())))
+                .filter(k -> (autor == null) || k.getAutor().equals(autor))
+                .collect(Collectors.toList());
+        lista = filteredList;*/
     }
 
 }

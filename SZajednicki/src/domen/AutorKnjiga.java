@@ -5,6 +5,7 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,7 +53,23 @@ public class AutorKnjiga implements ApstraktniDomenskiObjekat {
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        while (rs.next()) {
+            int sifraAutora = rs.getInt("autorknjiga.sifraAutora");
+            String ime = rs.getString("autor.ime");
+            String prezime = rs.getString("autor.prezime");
+            String biografija = rs.getString("autor.biografija");
+            Autor a = new Autor(sifraAutora, ime, prezime, biografija);
+
+            int sifraKnjige = rs.getInt("autorknjiga.sifraKnjige");
+            String naziv = rs.getString("knjiga.naziv");
+            String opis = rs.getString("knjiga.opis");
+            Knjiga k = new Knjiga(sifraKnjige, naziv, opis, null);
+
+            AutorKnjiga ak = new AutorKnjiga(a,k);
+            lista.add(ak);
+        }
+        return lista;
     }
 
     @Override
