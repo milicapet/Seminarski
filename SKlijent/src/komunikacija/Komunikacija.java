@@ -97,7 +97,7 @@ public class Komunikacija {
         Odgovor odg = (Odgovor) primalac.primi();
         if (odg.getOdgovor() == null) {
             System.out.println("Uspesno izmenjeno");
-            Cordinator.getInstance().osveziFormu();
+            Cordinator.getInstance().osveziFormuPrikazClanova();
         } else {
             System.out.println("Greska u izmeni");
         }
@@ -169,7 +169,7 @@ public class Komunikacija {
         Odgovor odg = (Odgovor) primalac.primi();
         if (odg.getOdgovor() == null) {
             System.out.println("Uspesno izmenjeno");
-            Cordinator.getInstance().osveziFormu();
+            Cordinator.getInstance().osveziFormuPrikazClanova();
         } else {
             System.out.println("Greska u izmeni");
         }        
@@ -192,7 +192,6 @@ public class Komunikacija {
         Odgovor odg = (Odgovor) primalac.primi();
         if (odg.getOdgovor() == null) {
             System.out.println("Uspesno izmenjeno");
-            Cordinator.getInstance().osveziFormu();
         } else {
             System.out.println("Greska u izmeni");
         }

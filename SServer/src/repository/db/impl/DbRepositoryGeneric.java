@@ -54,7 +54,6 @@ public class DbRepositoryGeneric implements DbRepository<ApstraktniDomenskiObjek
         Statement st = DbConnectionFactory.getInstance().getConnection().createStatement();
         st.executeUpdate(upit);
         st.close();
-
     }
 
     @Override

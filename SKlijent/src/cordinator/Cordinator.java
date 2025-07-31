@@ -92,7 +92,7 @@ public class Cordinator {
         dodajClanaController.otvoriFormu(FormaMod.IZMENI);
     }
 
-    public void osveziFormu() {
+    public void osveziFormuPrikazClanova() {
         prikazClanovaController.osveziFormu();
     }
 
@@ -119,6 +119,10 @@ public class Cordinator {
     public void otvoriDodajKnjiguFormu(FormaMod formaMod) {
         dodajKnjiguController = new DodajKnjiguController(new DodajKnjiguForma());
         dodajKnjiguController.otvoriFormu(formaMod);
+    }
+
+    public void osveziFormuPrikazKnjiga() {
+        prikazKnjigaController.osveziFormu();
     }
 
 }

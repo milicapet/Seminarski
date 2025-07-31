@@ -17,6 +17,7 @@ import operacija.clanovi.KreirajClanaSO;
 import operacija.clanovi.ObrisiClanaSO;
 import operacija.clanovi.UcitajClanoveSO;
 import operacija.izdavaci.UcitajIzdavaceSO;
+import operacija.knjige.IzmeniKnjiguSO;
 import operacija.knjige.KreirajKnjiguSO;
 import operacija.knjige.UcitajKnjigeSO;
 import operacija.knjige.primerci.IzmeniPrimerakSO;
@@ -121,8 +122,9 @@ public class Controller {
         operacija.izvrsi(p2, null);
     }
 
-    public void izmeniKnjigu(Knjiga k1) {
-        
+    public void izmeniKnjigu(Knjiga k1) throws Exception {
+        IzmeniKnjiguSO operacija = new IzmeniKnjiguSO();
+        operacija.izvrsi(k1, null);
     }
 
 }

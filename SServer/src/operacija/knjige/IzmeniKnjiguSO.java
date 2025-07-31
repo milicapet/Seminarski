@@ -5,6 +5,8 @@
 package operacija.knjige;
 
 import domen.Knjiga;
+import domen.Primerak;
+import java.util.List;
 import operacija.ApstraktnaGenerickaOperacija;
 
 /**
@@ -26,7 +28,20 @@ public class IzmeniKnjiguSO extends ApstraktnaGenerickaOperacija {
 
     @Override
     protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
-        //broker.edit((Knjiga) param);
+        Knjiga k = (Knjiga) param;
+        broker.edit(k);
+
+        String uslov = " JOIN izdavac ON primerak.sifraIzdavaca = izdavac.sifraIzdavaca"
+                + " WHERE primerak.sifraKnjige = " + k.getSifraKnjige() + " ";
+        List<Primerak> stariPrimerci = broker.getAll(new Primerak(), uslov);
+        for (Primerak p : stariPrimerci) {
+            broker.delete(p);
+        }
+
+        List<Primerak> noviPrimerci = k.getPrimerci();
+        for (Primerak p : noviPrimerci) {
+            broker.add(p);
+        }
     }
 
 }
