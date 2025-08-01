@@ -65,7 +65,7 @@ public class ModelTabeleKnjige extends AbstractTableModel {
         this.lista = lista;
     }
 
-    public void pretrazi(String sifraKnjige, String naziv, Autor autor) {
+    public void pretrazi(String sifraKnjige, String naziv, List<Autor> autori) {
         System.out.println("LISTA ORIGINAL" + lista);
         List<Knjiga> filtriraneKnjige = new ArrayList<>();
         for (Knjiga k : lista) {
@@ -79,17 +79,23 @@ public class ModelTabeleKnjige extends AbstractTableModel {
                     continue;
                 }
             }
-            if (autor != null) {
+            if (autori != null && !autori.isEmpty()) {
                 boolean postojiVeza = false;
                 for (AutorKnjiga ak : autoriKnjige) {
-                    if (ak.getKnjiga().getSifraKnjige() == k.getSifraKnjige()
-                            && ak.getAutor().getSifraAutora() == autor.getSifraAutora()) {
-                        postojiVeza = true;
+                    if (ak.getKnjiga().getSifraKnjige() == k.getSifraKnjige()) {
+                        for (Autor a : autori) {
+                            if (ak.getAutor().getSifraAutora() == a.getSifraAutora()) {
+                                postojiVeza = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (postojiVeza) {
                         break;
                     }
                 }
                 if (!postojiVeza) {
-                    continue; // preskoči knjigu ako nema vezu s autorom
+                    continue; // preskoči knjigu ako nema vezu sa nijednim od izabranih autora
                 }
             }
             filtriraneKnjige.add(k);

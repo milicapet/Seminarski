@@ -18,6 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 
@@ -46,12 +47,12 @@ public class PrikazKnjigaController {
 
     private void pripremiFormu() {
         List<Autor> autori = Komunikacija.getInstance().ucitajAutore();
-        pkf.getjComboBoxAutori().removeAllItems();
+        DefaultListModel<Autor> model = new DefaultListModel<>();
+        pkf.getjListAutori().removeAll();
         for (Autor a : autori) {
-            pkf.getjComboBoxAutori().addItem(a);
+            model.addElement(a);
         }
-        pkf.getjComboBoxAutori().addItem(null);
-        
+        pkf.getjListAutori().setModel(model);
         List<Knjiga> knjige = Komunikacija.getInstance().ucitajKnjige();
         ModelTabeleKnjige mtk = new ModelTabeleKnjige(knjige);
         pkf.getjTableKnjige().setModel(mtk);
@@ -123,9 +124,9 @@ public class PrikazKnjigaController {
             public void actionPerformed(ActionEvent e) {
                 String sifraKnjige = pkf.getjTextFieldSifraKnjige().getText().trim();
                 String naziv = pkf.getjTextFieldNaziv().getText().trim();
-                Autor autor = (Autor) pkf.getjComboBoxAutori().getSelectedItem();
+                List<Autor> autori = pkf.getjListAutori().getSelectedValuesList();
                 ModelTabeleKnjige mtk = (ModelTabeleKnjige) pkf.getjTableKnjige().getModel();
-                mtk.pretrazi(sifraKnjige, naziv, autor);
+                mtk.pretrazi(sifraKnjige, naziv, autori);
             }
         });
         pkf.addBtnResetujActionListener(new ActionListener() {
