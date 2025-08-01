@@ -28,6 +28,7 @@ import operacija.knjige.primerci.KreirajPrimerakSO;
 import operacija.knjige.primerci.ObrisiPrimerakSO;
 import operacija.knjige.primerci.UcitajPrimerkeSO;
 import operacija.login.LoginOperacija;
+import operacija.pozajmice.KreirajPozajmicuSO;
 import operacija.pozajmice.ObrisiPozajmicuSO;
 import operacija.pozajmice.UcitajPozajmiceSO;
 
@@ -147,6 +148,11 @@ public class Controller {
 
     public void obrisiPozajmicu(Pozajmica p) throws Exception {
         ObrisiPozajmicuSO operacija = new ObrisiPozajmicuSO();
+        operacija.izvrsi(p, null);
+    }
+
+    public void dodajPozajmicu(Pozajmica p) throws Exception {
+        KreirajPozajmicuSO operacija = new KreirajPozajmicuSO();
         operacija.izvrsi(p, null);
     }
 

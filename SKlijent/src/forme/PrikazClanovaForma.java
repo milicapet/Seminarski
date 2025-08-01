@@ -20,6 +20,8 @@ public class PrikazClanovaForma extends javax.swing.JFrame {
      */
     public PrikazClanovaForma() {
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Prikaz članova forma");
     }
 
     /**
@@ -48,7 +50,7 @@ public class PrikazClanovaForma extends javax.swing.JFrame {
         jButtonPretrazi = new javax.swing.JButton();
         jButtonResetuj = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTableClanovi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

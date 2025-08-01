@@ -19,6 +19,7 @@ public class DodajClanaForma extends javax.swing.JFrame {
      */
     public DodajClanaForma() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -43,7 +44,7 @@ public class DodajClanaForma extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButtonIzmeni = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel5.setText("Broj telefona:");
 

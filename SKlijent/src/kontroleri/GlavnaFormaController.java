@@ -21,8 +21,7 @@ public class GlavnaFormaController {
     }
 
     private void addActionListeners() {
-        
-        
+                
     }
 
     public void otvoriFormu() {

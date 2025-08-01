@@ -18,6 +18,8 @@ public class GlavnaForma extends javax.swing.JFrame {
      */
     public GlavnaForma() {
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Glavna forma");
     }
 
     /**

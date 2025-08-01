@@ -77,12 +77,13 @@ public class DodajClanaController {
                 dcf.getjButtonIzmeni().setVisible(false);
                 dcf.getjButtonDodaj().setVisible(true);
                 dcf.getjButtonDodaj().setEnabled(true);
-
+                dcf.setTitle("Dodaj člana forma");
                 break;
             case IZMENI:
                 dcf.getjButtonDodaj().setVisible(false);
                 dcf.getjButtonIzmeni().setVisible(true);
                 dcf.getjButtonIzmeni().setEnabled(true);
+                dcf.setTitle("Izmeni člana forma");
                 Clan c = (Clan) Cordinator.getInstance().vratiParam("clan");
                 dcf.getjTextFieldBrClanskeKarte().setText(String.valueOf(c.getBrojClanskeKarte()));
                 dcf.getjTextFieldIme().setText(c.getIme());

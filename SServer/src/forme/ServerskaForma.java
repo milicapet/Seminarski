@@ -14,7 +14,7 @@ import server.Server;
  * @author milic
  */
 public class ServerskaForma extends javax.swing.JFrame {
-    
+
     Server server;
 
     /**
@@ -23,10 +23,11 @@ public class ServerskaForma extends javax.swing.JFrame {
     public ServerskaForma() {
         initComponents();
         setLocationRelativeTo(null);
+        setTitle("Serverska forma");
         server = new Server();
         jLabelStatus.setText("");
         jButtonZAUSTAVI.setEnabled(false);
-        
+
     }
 
     /**

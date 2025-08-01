@@ -19,6 +19,8 @@ public class PrikazPozajmicaForma extends javax.swing.JFrame {
      */
     public PrikazPozajmicaForma() {
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Prikaz pozajmica forma");
     }
 
     public JButton getjButtonIzmeni() {
@@ -55,7 +57,7 @@ public class PrikazPozajmicaForma extends javax.swing.JFrame {
         jButtonObrisi = new javax.swing.JButton();
         jButtonIzmeni = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTablePozajmice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

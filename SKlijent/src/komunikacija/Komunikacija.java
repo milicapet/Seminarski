@@ -230,4 +230,15 @@ public class Komunikacija {
         }
     }
 
+    public void dodajPozajmicu(Pozajmica p) {
+        Zahtev zahtev = new Zahtev(Operacije.DODAJ_POZAJMICU, p);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno dodato");
+        } else {
+            System.out.println("Greska u dodavanju");
+        }
+    }
+
 }

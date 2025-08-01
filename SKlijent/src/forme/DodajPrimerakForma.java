@@ -21,6 +21,7 @@ public class DodajPrimerakForma extends javax.swing.JFrame {
      */
     public DodajPrimerakForma() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     public JComboBox getJComboBoxIzdavac() {

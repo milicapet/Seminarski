@@ -82,14 +82,14 @@ public class DodajKnjiguController {
         });
         dkf.addBtnIzmeniKnjiguActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {                
-                    int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
-                    String naziv = dkf.getjTextFieldNaziv().getText().trim();
-                    String opis = dkf.getjTextAreaOpis().getText().trim();
-                    Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
-                    ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
-                    List<Primerak> primerci = mtp.getLista();
-                    Knjiga k = new Knjiga(sifraKnjige, naziv, opis, primerci);
+            public void actionPerformed(ActionEvent e) {
+                int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
+                String naziv = dkf.getjTextFieldNaziv().getText().trim();
+                String opis = dkf.getjTextAreaOpis().getText().trim();
+                Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
+                ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
+                List<Primerak> primerci = mtp.getLista();
+                Knjiga k = new Knjiga(sifraKnjige, naziv, opis, primerci);
                 try {
                     Komunikacija.getInstance().izmeniKnjigu(k);
                     JOptionPane.showMessageDialog(null, "Sistem je zapamtio knjigu", "USPEH", JOptionPane.INFORMATION_MESSAGE);
@@ -118,12 +118,13 @@ public class DodajKnjiguController {
                 dkf.getjButtonIzmeniKnjigu().setVisible(false);
                 dkf.getjButtonDodajKnjigu().setVisible(true);
                 dkf.getjButtonDodajKnjigu().setEnabled(true);
-
+                dkf.setTitle("Dodaj knjigu forma");
                 break;
             case IZMENI:
                 dkf.getjButtonDodajKnjigu().setVisible(false);
                 dkf.getjButtonIzmeniKnjigu().setVisible(true);
                 dkf.getjButtonIzmeniKnjigu().setEnabled(true);
+                dkf.setTitle("Izmeni knjigu forma");
                 Knjiga k = (Knjiga) Cordinator.getInstance().vratiParam("knjiga_za_izmenu");
                 dkf.getjTextFieldSifraKnjige().setText(String.valueOf(k.getSifraKnjige()));
                 dkf.getjTextFieldNaziv().setText(k.getNaziv());

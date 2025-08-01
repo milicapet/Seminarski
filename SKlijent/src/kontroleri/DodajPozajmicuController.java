@@ -13,7 +13,13 @@ import forme.DodajPozajmicuForma;
 import forme.FormaMod;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 
 /**
@@ -30,7 +36,7 @@ public class DodajPozajmicuController {
     }
 
     private void addActionListeners() {
-        dpf.addActionListener(new ActionListener() {
+        dpf.addCmbKnjigeActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Knjiga odabranaKnjiga = (Knjiga) dpf.getjComboBoxKnjige().getSelectedItem();
@@ -43,43 +49,36 @@ public class DodajPozajmicuController {
                 }
             }
         });
-
         dpf.addBtnDodajActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {/*
-                int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
-                int sifraPrimerka = Integer.parseInt(dkf.getjTextFieldSifraPrimerka().getText().trim());
-                int godIzdanja = Integer.parseInt(dkf.getjTextFieldGodinaIzdanja().getText().trim());
-                int brIzdanja = Integer.parseInt(dkf.getjTextFieldBrojIzdanja().getText().trim());
-                Izdavac i = (Izdavac) dkf.getjComboBoxIzdavaci().getSelectedItem();
-                Knjiga k = new Knjiga();
-                k.setSifraKnjige(sifraKnjige);
-                Primerak p = new Primerak(k, sifraPrimerka, godIzdanja, brIzdanja, i);
-                ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
-                mtp.dodajPrimerak(p);*/
-            }
-        });
-        /*
-        dkf.addBtnDodajKnjiguActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
-                String naziv = dkf.getjTextFieldNaziv().getText().trim();
-                String opis = dkf.getjTextAreaOpis().getText().trim();
-                Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
-                ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
-                List<Primerak> primerci = mtp.getLista();
-                Knjiga k = new Knjiga(sifraKnjige, naziv, opis, primerci);
                 try {
-                    Komunikacija.getInstance().dodajKnjigu(k);
-                    JOptionPane.showMessageDialog(dkf, "Sistem je kreirao knjigu.", "USPEH", JOptionPane.INFORMATION_MESSAGE);
-                    dkf.dispose();
+                    Clan clan = (Clan) dpf.getjComboBoxClanovi().getSelectedItem();
+                    Knjiga knjiga = (Knjiga) dpf.getjComboBoxKnjige().getSelectedItem();
+                    Primerak primerak = (Primerak) dpf.getjComboBoxPrimerci().getSelectedItem();
+                    System.out.println("PRIMERAK IZ CMB " + primerak + " Sif Knjige " + primerak.getKnjiga().getSifraKnjige());
+                    String datUzStr = dpf.getjTextFieldDatUzimanja().getText().trim();
+                    String datVrStr = dpf.getjTextFieldDatVracanja().getText().trim();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+                    Date datumUzimanja = sdf.parse(datUzStr);
+                    Date datumVracanja = null;
+                    if (datVrStr != null && !datVrStr.trim().isEmpty()) {
+                        datumVracanja = sdf.parse(datVrStr);
+                    }
+                    Pozajmica p = new Pozajmica(primerak, clan, datumUzimanja, datumVracanja);
+                    Komunikacija.getInstance().dodajPozajmicu(p);
+                    JOptionPane.showMessageDialog(dpf, "Sistem je kreirao pozajmicu.", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                    dpf.dispose();
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                    System.out.println("DATUM FORMATIRANJE GRESKA");
+                    Logger.getLogger(DodajPozajmicuController.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Sistem ne može da kreira knjigu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da kreira pozajmicu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        });
-        dpf.addBtnIzmeniKnjiguActionListener(new ActionListener() {
+        });/*
+        dpf.addBtnIzmeniActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {                
                     int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
@@ -114,12 +113,13 @@ public class DodajPozajmicuController {
                 dpf.getjButtonIzmeni().setVisible(false);
                 dpf.getjButtonDodaj().setVisible(true);
                 dpf.getjButtonDodaj().setEnabled(true);
-
+                dpf.setTitle("Dodaj pozajmicu forma");
                 break;
             case IZMENI:
                 dpf.getjButtonDodaj().setVisible(false);
                 dpf.getjButtonIzmeni().setVisible(true);
-                dpf.getjButtonIzmeni().setEnabled(true);/*
+                dpf.getjButtonIzmeni().setEnabled(true);
+                dpf.setTitle("Izmeni pozajmicu forma");/*
                 Pozajmica p = (Pozajmica) Cordinator.getInstance().vratiParam("pozajmica_za_izmenu");
                 dpf.getjTextFieldSifraKnjige().setText(String.valueOf(k.getSifraKnjige()));
                 dpf.getjTextFieldNaziv().setText(k.getNaziv());

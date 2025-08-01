@@ -62,8 +62,9 @@ public class PrikazPozajmicaController {
                     }
                 }
             }
-        });/*
-               pkf.addBtnIzmeniKnjiguActionListener(new ActionListener() {
+        });
+        /*
+        pkf.addBtnIzmeniKnjiguActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selRed = pkf.getjTableKnjige().getSelectedRow();
@@ -79,7 +80,7 @@ public class PrikazPozajmicaController {
                 }
             }
         });
-         */
+          */
     }
 
     private void addMouseListeners() {/*

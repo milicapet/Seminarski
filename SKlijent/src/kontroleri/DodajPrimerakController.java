@@ -45,13 +45,13 @@ public class DodajPrimerakController {
                 dpf.getjButtonIzmeni().setVisible(false);
                 dpf.getjButtonDodaj().setVisible(true);
                 dpf.getjButtonDodaj().setEnabled(true);
-
+                dpf.setTitle("Dodaj primerak forma");
                 break;
             case IZMENI:
                 dpf.getjButtonDodaj().setVisible(false);
                 dpf.getjButtonIzmeni().setVisible(true);
                 dpf.getjButtonIzmeni().setEnabled(true);
-
+                dpf.setTitle("Izmeni primerak forma");
                 dpf.getjTextFieldSifraPrimerka().setText(String.valueOf(p.getSifraPrimerka()));
                 dpf.getjTextFieldBrIzdanja().setEnabled(false);
                 dpf.getjTextFieldGodIzdanja().setText(String.valueOf(p.getGodinaIzdanja()));
