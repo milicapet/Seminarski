@@ -58,6 +58,10 @@ public class DodajPozajmicuForma extends javax.swing.JFrame {
         jButtonDodaj.addActionListener(actionListener);
     }
 
+    public void addBtnIzmeniActionListener(ActionListener actionListener) {
+        jButtonIzmeni.addActionListener(actionListener);
+    }
+
     public void addCmbKnjigeActionListener(ActionListener actionListener) {
         jComboBoxKnjige.addActionListener(actionListener);
     }

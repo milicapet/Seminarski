@@ -143,10 +143,10 @@ public class ObradaKlijentskihZahteva extends Thread {
                         Controller.getInstance().dodajPozajmicu(p);
                         odgovor.setOdgovor(null);
                         break;
-                    case Operacije.IZMENI_POZAJMICU:/*
-                        Clan c1 = (Clan) zahtev.getParametar();
-                        Controller.getInstance().izmeniClana(c1);
-                        odgovor.setOdgovor(null);*/
+                    case Operacije.IZMENI_POZAJMICU:
+                        Pozajmica poz = (Pozajmica) zahtev.getParametar();
+                        Controller.getInstance().izmeniPozajmicu(poz);
+                        odgovor.setOdgovor(null);
                         break;
                     default:
                         System.out.println("GRESKA, TA OPERACIJA NE POSTOJI!");

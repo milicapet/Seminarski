@@ -27,14 +27,14 @@ import komunikacija.Komunikacija;
  * @author milic
  */
 public class DodajPozajmicuController {
-
+    
     private final DodajPozajmicuForma dpf;
-
+    
     public DodajPozajmicuController(DodajPozajmicuForma dpf) {
         this.dpf = dpf;
         addActionListeners();
     }
-
+    
     private void addActionListeners() {
         dpf.addCmbKnjigeActionListener(new ActionListener() {
             @Override
@@ -77,36 +77,47 @@ public class DodajPozajmicuController {
                     JOptionPane.showMessageDialog(null, "Sistem ne može da kreira pozajmicu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        });/*
+        });
         dpf.addBtnIzmeniActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {                
-                    int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
-                    String naziv = dkf.getjTextFieldNaziv().getText().trim();
-                    String opis = dkf.getjTextAreaOpis().getText().trim();
-                    Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
-                    ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
-                    List<Primerak> primerci = mtp.getLista();
-                    Knjiga k = new Knjiga(sifraKnjige, naziv, opis, primerci);
+            public void actionPerformed(ActionEvent e) {
                 try {
-                    Komunikacija.getInstance().izmeniKnjigu(k);
-                    JOptionPane.showMessageDialog(null, "Sistem je zapamtio knjigu", "USPEH", JOptionPane.INFORMATION_MESSAGE);
-                    Cordinator.getInstance().osveziFormuPrikazKnjiga();
-                    dkf.dispose();
+                    Clan clan = (Clan) dpf.getjComboBoxClanovi().getSelectedItem();
+                    Knjiga knjiga = (Knjiga) dpf.getjComboBoxKnjige().getSelectedItem();
+                    Primerak primerak = (Primerak) dpf.getjComboBoxPrimerci().getSelectedItem();
+                    System.out.println("PRIMERAK IZ CMB " + primerak + " Sif Knjige " + primerak.getKnjiga().getSifraKnjige());
+                    String datUzStr = dpf.getjTextFieldDatUzimanja().getText().trim();
+                    String datVrStr = dpf.getjTextFieldDatVracanja().getText().trim();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+                    Date datumUzimanja = sdf.parse(datUzStr);
+                    Date datumVracanja = null;
+                    if (datVrStr != null && !datVrStr.trim().isEmpty()) {
+                        datumVracanja = sdf.parse(datVrStr);
+                    }
+                    Pozajmica p = new Pozajmica(primerak, clan, datumUzimanja, datumVracanja);
+                    
+                    Komunikacija.getInstance().izmeniPozajmicu(p);
+                    JOptionPane.showMessageDialog(null, "Sistem je zapamtio pozajmicu", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                    Cordinator.getInstance().osveziFormuPrikazPozajmica();
+                    dpf.dispose();
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                    System.out.println("DATUM FORMATIRANJE GRESKA");
+                    Logger.getLogger(DodajPozajmicuController.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Sistem ne može da izmeni knjigu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da izmeni pozajmicu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        });*/
+        });
     }
-
+    
     public void otvoriFormu(FormaMod mod) {
         popuniComboBoxeve();
         pripremiFormu(mod);
         dpf.setVisible(true);
     }
-
+    
     private void pripremiFormu(FormaMod mod) {
         switch (mod) {
             case DODAJ:
@@ -119,32 +130,43 @@ public class DodajPozajmicuController {
                 dpf.getjButtonDodaj().setVisible(false);
                 dpf.getjButtonIzmeni().setVisible(true);
                 dpf.getjButtonIzmeni().setEnabled(true);
-                dpf.setTitle("Izmeni pozajmicu forma");/*
+                dpf.setTitle("Izmeni pozajmicu forma");
                 Pozajmica p = (Pozajmica) Cordinator.getInstance().vratiParam("pozajmica_za_izmenu");
-                dpf.getjTextFieldSifraKnjige().setText(String.valueOf(k.getSifraKnjige()));
-                dpf.getjTextFieldNaziv().setText(k.getNaziv());
-                dpf.getjTextAreaOpis().setText(k.getOpis());
-                //dkf.getjComboBoxAutori().setSelectedItem(k.get);
-                 */
-
+                dpf.getjComboBoxClanovi().setSelectedItem(p.getClan());
+                dpf.getjComboBoxKnjige().setSelectedItem(p.getPrimerak().getKnjiga());
+                dpf.getjComboBoxPrimerci().setSelectedItem(p.getPrimerak());
+                dpf.getjTextFieldDatUzimanja().setText(formatirajDatum(p.getDatumUzimanja()));
+                dpf.getjComboBoxClanovi().setEnabled(false);
+                dpf.getjComboBoxKnjige().setEnabled(false);
+                dpf.getjComboBoxPrimerci().setEnabled(false);
+                dpf.getjTextFieldDatUzimanja().setEnabled(false);
+                dpf.getjTextFieldDatVracanja().setText(formatirajDatum(p.getDatumVracanja()));
                 break;
             default:
                 throw new AssertionError();
         }
     }
-
+    
     private void popuniComboBoxeve() {
         List<Clan> clanovi = Komunikacija.getInstance().ucitajClanove();
         dpf.getjComboBoxClanovi().removeAllItems();
         for (Clan c : clanovi) {
             dpf.getjComboBoxClanovi().addItem(c);
         }
-
+        
         List<Knjiga> knjige = Komunikacija.getInstance().ucitajKnjige();
         dpf.getjComboBoxKnjige().removeAllItems();
         for (Knjiga k : knjige) {
             dpf.getjComboBoxKnjige().addItem(k);
         }
     }
-
+    
+    private String formatirajDatum(Date datum) {
+        if (datum == null) {
+            return "";
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        return sdf.format(datum);
+    }
+    
 }

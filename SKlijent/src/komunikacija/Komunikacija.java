@@ -241,4 +241,16 @@ public class Komunikacija {
         }
     }
 
+    public void izmeniPozajmicu(Pozajmica p) {
+        Zahtev zahtev = new Zahtev(Operacije.IZMENI_POZAJMICU, p);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno izmenjeno");
+            //Cordinator.getInstance().osveziFormuPrikazClanova();
+        } else {
+            System.out.println("Greska u izmeni");
+        }
+    }
+
 }

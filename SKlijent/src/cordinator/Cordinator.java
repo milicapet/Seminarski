@@ -141,4 +141,13 @@ public class Cordinator {
         prikazPozajmicaController.otvoriFormu();
     }
 
+    public void otvoriIzmeniPozajmicuFormu() {
+        dodajPozajmicuController = new DodajPozajmicuController(new DodajPozajmicuForma());
+        dodajPozajmicuController.otvoriFormu(FormaMod.IZMENI);
+    }
+
+    public void osveziFormuPrikazPozajmica() {
+        prikazPozajmicaController.osveziFormu();
+    }
+
 }

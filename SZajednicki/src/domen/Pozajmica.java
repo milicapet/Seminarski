@@ -79,17 +79,28 @@ public class Pozajmica implements ApstraktniDomenskiObjekat {
             int sifraKnjige = rs.getInt("pozajmica.sifraKnjige");
             int sifraPrimerka = rs.getInt("pozajmica.sifraPrimerka");
             int brojClanskeKarte = rs.getInt("pozajmica.brojClanskeKarte");
+
             java.sql.Date datUzSQL = rs.getDate("pozajmica.datumUzimanja");
             java.sql.Date datVrSQL = rs.getDate("pozajmica.datumVracanja");
             java.util.Date datUzUtil = new java.util.Date(datUzSQL.getTime());
             java.util.Date datVrUtil = datVrSQL != null ? new java.util.Date(datVrSQL.getTime()) : null;
-            Primerak primerak = new Primerak();
-            primerak.setSifraPrimerka(sifraPrimerka);
-            Knjiga knjiga = new Knjiga();
-            knjiga.setSifraKnjige(sifraKnjige);
-            primerak.setKnjiga(knjiga);
-            Clan clan = new Clan();
-            clan.setBrojClanskeKarte(brojClanskeKarte);
+
+            String naziv = rs.getString("knjiga.naziv");
+            String opis = rs.getString("knjiga.opis");
+            Knjiga knjiga = new Knjiga(sifraKnjige, naziv, opis, null);
+
+            int brIzdanja = rs.getInt("primerak.brojIzdanja");
+            int godIzdanja = rs.getInt("primerak.godinaIzdanja");
+            Izdavac i = new Izdavac();
+
+            Primerak primerak = new Primerak(knjiga, sifraPrimerka, godIzdanja, brIzdanja, i);
+
+            String ime = rs.getString("clan.ime");
+            String prezime = rs.getString("clan.prezime");
+            String adresa = rs.getString("clan.adresa");
+            String brojTelefona = rs.getString("clan.brojTelefona");
+            Clan clan = new Clan(brojClanskeKarte, ime, prezime, adresa, brojTelefona);
+
             Pozajmica p = new Pozajmica(primerak, clan, datUzUtil, datVrUtil);
             lista.add(p);
         }
@@ -125,9 +136,12 @@ public class Pozajmica implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiVrednostiZaIzmenu() {
+        String datumVracanjaZaUbacivanje = (datumVracanja != null)
+                ? "'" + new java.sql.Date(datumVracanja.getTime()).toString() + "'"
+                : "NULL";
         return "sifraKnjige=" + primerak.getKnjiga().getSifraKnjige() + ",sifraPrimerka=" + primerak.getSifraPrimerka()
-                + ",brojClanskeKarte=" + clan.getBrojClanskeKarte() + ",datumUzimanja='" + datumUzimanja
-                + "',datumVracanja='" + datumVracanja + "'";
+                + ",brojClanskeKarte=" + clan.getBrojClanskeKarte() + ",datumUzimanja='" + new java.sql.Date(datumUzimanja.getTime())
+                + "',datumVracanja=" + datumVracanjaZaUbacivanje;
     }
 
 }

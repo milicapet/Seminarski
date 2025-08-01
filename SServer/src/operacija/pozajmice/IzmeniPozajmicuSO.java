@@ -5,31 +5,28 @@
 package operacija.pozajmice;
 
 import domen.Pozajmica;
-import java.util.List;
 import operacija.ApstraktnaGenerickaOperacija;
 
 /**
  *
  * @author milic
  */
-public class UcitajPozajmiceSO extends ApstraktnaGenerickaOperacija {
-
-    private List<Pozajmica> pozajmice;
-
-    public List<Pozajmica> getPozajmice() {
-        return pozajmice;
-    }
+public class IzmeniPozajmicuSO extends ApstraktnaGenerickaOperacija {
 
     @Override
     protected void preduslovi(Object param) throws Exception {
-
+        if (param == null || !(param instanceof Pozajmica)) {
+            throw new Exception("Sistem ne može da kreira pozajmicu");
+        }
+        Pozajmica p = (Pozajmica) param;
+        if (p.getDatumUzimanja() == null) {
+            throw new Exception("Sistem ne može da kreira pozajmicu");
+        }
     }
 
     @Override
     protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
-        pozajmice = broker.getAll(new Pozajmica(), " JOIN knjiga ON knjiga.sifraKnjige=pozajmica.sifraKnjige "
-                + "JOIN primerak ON primerak.sifraPrimerka=pozajmica.sifraPrimerka "
-                + "JOIN clan ON clan.brojClanskeKarte=pozajmica.brojClanskeKarte");
+        broker.edit((Pozajmica) param);
     }
 
 }

@@ -4,7 +4,9 @@
  */
 package kontroleri;
 
+import cordinator.Cordinator;
 import domen.Pozajmica;
+import forme.FormaMod;
 import forme.PrikazPozajmicaForma;
 import forme.model.ModelTabelePozajmica;
 import java.awt.event.ActionEvent;
@@ -63,40 +65,25 @@ public class PrikazPozajmicaController {
                 }
             }
         });
-        /*
-        pkf.addBtnIzmeniKnjiguActionListener(new ActionListener() {
+        ppf.addBtnIzmeniActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int selRed = pkf.getjTableKnjige().getSelectedRow();
+                int selRed = ppf.getjTablePozajmice().getSelectedRow();
                 if (selRed == -1) {
-                    JOptionPane.showMessageDialog(pkf, "Nije odabrana knjiga za izmenu", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(ppf, "Nije odabrana pozajmica za izmenu", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    ModelTabeleKnjige mtk = (ModelTabeleKnjige) pkf.getjTableKnjige().getModel();
-                    Knjiga k = mtk.getLista().get(selRed);
-                    List<Primerak> primerci = Komunikacija.getInstance().ucitajPrimerke(k.getSifraKnjige());
-                    k.setPrimerci(primerci);
-                    Cordinator.getInstance().dodajParam("knjiga_za_izmenu", k);
-                    Cordinator.getInstance().otvoriDodajKnjiguFormu(FormaMod.IZMENI);
+                    ModelTabelePozajmica mtp = (ModelTabelePozajmica) ppf.getjTablePozajmice().getModel();
+                    Pozajmica p = mtp.getLista().get(selRed);
+                                    System.out.println("\n\n POZAJMICA u PRIKAZU " + p);
+                    Cordinator.getInstance().dodajParam("pozajmica_za_izmenu", p);
+                    Cordinator.getInstance().otvoriIzmeniPozajmicuFormu();
                 }
             }
         });
-          */
+
     }
 
-    private void addMouseListeners() {/*
-        pkf.getjTableKnjige().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int red = pkf.getjTableKnjige().getSelectedRow();
-                if (red != -1) {
-                    ModelTabeleKnjige mtk = (ModelTabeleKnjige) pkf.getjTableKnjige().getModel();
-                    Knjiga k = mtk.getLista().get(red);
-                    List<Primerak> primerci = Komunikacija.getInstance().ucitajPrimerke(k.getSifraKnjige());
-                    ModelTabelePrimerak mtp = new ModelTabelePrimerak(primerci);
-                    pkf.getjTablePrimerci().setModel(mtp);
-                }
-            }
-        });*/
+    private void addMouseListeners() {
     }
 
 }

@@ -7,6 +7,7 @@ package domen;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -75,7 +76,31 @@ public class Primerak implements ApstraktniDomenskiObjekat {
     public String toString() {
         return sifraPrimerka + ", " + godinaIzdanja + ", " + brojIzdanja + ", " + izdavac + '}';
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Primerak other = (Primerak) obj;
+        if (this.sifraPrimerka != other.sifraPrimerka) {
+            return false;
+        }
+        return Objects.equals(this.knjiga, other.knjiga);
+    }
+
     @Override
     public String vratiNazivTabele() {
         return "primerak";
@@ -88,7 +113,7 @@ public class Primerak implements ApstraktniDomenskiObjekat {
             int sifraKnjige = rs.getInt("primerak.sifraKnjige");
             Knjiga k = new Knjiga();
             k.setSifraKnjige(sifraKnjige);
-            
+
             int sifraPrimerka = rs.getInt("primerak.sifraPrimerka");
             int godinaIzdanja = rs.getInt("primerak.godinaIzdanja");
             int brojIzdanja = rs.getInt("primerak.brojIzdanja");
