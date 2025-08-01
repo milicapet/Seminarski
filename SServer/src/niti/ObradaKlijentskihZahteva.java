@@ -152,7 +152,17 @@ public class ObradaKlijentskihZahteva extends Thread {
                         List<AutorKnjiga> ak = (List<AutorKnjiga>) zahtev.getParametar();
                         Controller.getInstance().dodajAutoreZaKnjigu(ak);
                         odgovor.setOdgovor(null);
-                        break;    
+                        break;
+                    case Operacije.UCITAJ_AUTORE_ZA_KNJIGU:
+                        int sifraKnjige2 = (int) zahtev.getParametar();
+                        List<Autor> autoriKnjige = Controller.getInstance().ucitajAutoreKnjige(sifraKnjige2);
+                        odgovor.setOdgovor(autoriKnjige);
+                        break;
+                    case Operacije.IZMENI_AUTORE_ZA_KNJIGU:
+                        List<AutorKnjiga> ak2 = (List<AutorKnjiga>) zahtev.getParametar();
+                        Controller.getInstance().izmeniAutoreZaKnjigu(ak2);
+                        odgovor.setOdgovor(null);
+                        break;
                     default:
                         System.out.println("GRESKA, TA OPERACIJA NE POSTOJI!");
                 }

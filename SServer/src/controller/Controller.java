@@ -13,15 +13,17 @@ import domen.Knjiga;
 import domen.Pozajmica;
 import domen.Primerak;
 import java.util.List;
-import operacija.autori.UcitajAutorKnjigeSO;
+import operacija.autoriknjige.UcitajAutorKnjigeSO;
 import operacija.autori.UcitajAutoreSO;
+import operacija.autoriknjige.IzmeniAutoreZaKnjiguSO;
 import operacija.clanovi.IzmeniClanaSO;
 import operacija.clanovi.KreirajClanaSO;
 import operacija.clanovi.ObrisiClanaSO;
 import operacija.clanovi.UcitajClanoveSO;
 import operacija.izdavaci.UcitajIzdavaceSO;
 import operacija.knjige.IzmeniKnjiguSO;
-import operacija.knjige.KreirajAutorKnjigaSO;
+import operacija.autoriknjige.KreirajAutorKnjigaSO;
+import operacija.autoriknjige.UcitajAutoreKnjigeSO;
 import operacija.knjige.KreirajKnjiguSO;
 import operacija.knjige.UcitajKnjigeSO;
 import operacija.knjige.primerci.IzmeniPrimerakSO;
@@ -166,6 +168,18 @@ public class Controller {
     public void dodajAutoreZaKnjigu(List<AutorKnjiga> ak) throws Exception {
         KreirajAutorKnjigaSO operacija = new KreirajAutorKnjigaSO();
         operacija.izvrsi(ak, null);
+    }
+
+    public List<Autor> ucitajAutoreKnjige(int sifraKnjige2) throws Exception {
+        UcitajAutoreKnjigeSO operacija = new UcitajAutoreKnjigeSO();
+        operacija.izvrsi(sifraKnjige2, null);
+        System.out.println("KLASA Controller: " + operacija.getAutoriKnjige());
+        return operacija.getAutoriKnjige();
+    }
+
+    public void izmeniAutoreZaKnjigu(List<AutorKnjiga> ak2) throws Exception {
+        IzmeniAutoreZaKnjiguSO operacija = new IzmeniAutoreZaKnjiguSO();
+        operacija.izvrsi(ak2, null);
     }
 
 }

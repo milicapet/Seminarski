@@ -264,4 +264,24 @@ public class Komunikacija {
         }
     }
 
+    public List<Autor> ucitajAutoreZaKnjigu(int sifraKnjige) {
+        List<Autor> autoriKnjige = new ArrayList<>();
+        Zahtev zahtev = new Zahtev(Operacije.UCITAJ_AUTORE_ZA_KNJIGU, sifraKnjige);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        autoriKnjige = (List<Autor>) odg.getOdgovor();
+        return autoriKnjige;
+    }
+
+    public void izmeniAutoreZaKnjigu(List<AutorKnjiga> autorKnjigaLista) {
+        Zahtev zahtev = new Zahtev(Operacije.IZMENI_AUTORE_ZA_KNJIGU, autorKnjigaLista);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno izmenjeno");
+        } else {
+            System.out.println("Greska u izmeni");
+        }
+    }
+
 }

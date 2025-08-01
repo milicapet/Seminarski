@@ -18,11 +18,11 @@ public class IzmeniKnjiguSO extends ApstraktnaGenerickaOperacija {
     @Override
     protected void preduslovi(Object param) throws Exception {
         if (param == null || !(param instanceof Knjiga)) {
-            throw new Exception("Sistem ne može da kreira knjigu");
+            throw new Exception("Sistem ne može da izmeni knjigu");
         }
         Knjiga k = (Knjiga) param;
         if (k.getNaziv() == null || k.getNaziv().isEmpty()) {
-            throw new Exception("Sistem ne može da kreira knjigu");
+            throw new Exception("Sistem ne može da izmeni knjigu");
         }
     }
 

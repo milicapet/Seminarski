@@ -16,6 +16,7 @@ import forme.model.ModelTabelePrimerak;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -93,12 +94,17 @@ public class DodajKnjiguController {
                 int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
                 String naziv = dkf.getjTextFieldNaziv().getText().trim();
                 String opis = dkf.getjTextAreaOpis().getText().trim();
-                //Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
+                List<Autor> autori = dkf.getjListAutori().getSelectedValuesList();
                 ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
                 List<Primerak> primerci = mtp.getLista();
                 Knjiga k = new Knjiga(sifraKnjige, naziv, opis, primerci);
+                List<AutorKnjiga> autorKnjigaLista = new ArrayList<>();
+                for (Autor a : autori) {
+                    autorKnjigaLista.add(new AutorKnjiga(a, k));
+                }
                 try {
                     Komunikacija.getInstance().izmeniKnjigu(k);
+                    Komunikacija.getInstance().izmeniAutoreZaKnjigu(autorKnjigaLista);
                     JOptionPane.showMessageDialog(null, "Sistem je zapamtio knjigu", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                     Cordinator.getInstance().osveziFormuPrikazKnjiga();
                     dkf.dispose();
@@ -136,7 +142,20 @@ public class DodajKnjiguController {
                 dkf.getjTextFieldSifraKnjige().setText(String.valueOf(k.getSifraKnjige()));
                 dkf.getjTextFieldNaziv().setText(k.getNaziv());
                 dkf.getjTextAreaOpis().setText(k.getOpis());
-                //dkf.getjComboBoxAutori().setSelectedItem(k.get);
+
+                DefaultListModel<Autor> model = (DefaultListModel<Autor>) dkf.getjListAutori().getModel();
+                List<Autor> autoriKnjige = Komunikacija.getInstance().ucitajAutoreZaKnjigu(k.getSifraKnjige());
+                int[] indeksiT = new int[model.size()];
+                int brojac = 0;
+                for (int i = 0; i < model.size(); i++) {
+                    Autor a = model.getElementAt(i);
+                    if (autoriKnjige.contains(a)) {
+                        indeksiT[brojac++] = i;
+                    }
+                }
+                int[] indeksi = Arrays.copyOf(indeksiT, brojac);
+                dkf.getjListAutori().setSelectedIndices(indeksi);
+
                 ModelTabelePrimerak mtp = new ModelTabelePrimerak(k.getPrimerci());
                 dkf.getjTablePrimerci().setModel(mtp);
 
