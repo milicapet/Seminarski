@@ -6,6 +6,7 @@ package kontroleri;
 
 import cordinator.Cordinator;
 import domen.Autor;
+import domen.AutorKnjiga;
 import domen.Izdavac;
 import domen.Knjiga;
 import domen.Primerak;
@@ -16,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 
@@ -67,12 +69,17 @@ public class DodajKnjiguController {
                 int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
                 String naziv = dkf.getjTextFieldNaziv().getText().trim();
                 String opis = dkf.getjTextAreaOpis().getText().trim();
-                Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
+                List<Autor> autori = dkf.getjListAutori().getSelectedValuesList();
                 ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
                 List<Primerak> primerci = mtp.getLista();
                 Knjiga k = new Knjiga(sifraKnjige, naziv, opis, primerci);
+                List<AutorKnjiga> autorKnjigaLista = new ArrayList<>();
+                for (Autor a : autori) {
+                    autorKnjigaLista.add(new AutorKnjiga(a, k));
+                }
                 try {
                     Komunikacija.getInstance().dodajKnjigu(k);
+                    Komunikacija.getInstance().dodajAutoreZaKnjigu(autorKnjigaLista);
                     JOptionPane.showMessageDialog(dkf, "Sistem je kreirao knjigu.", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 } catch (Exception ex) {
@@ -86,7 +93,7 @@ public class DodajKnjiguController {
                 int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
                 String naziv = dkf.getjTextFieldNaziv().getText().trim();
                 String opis = dkf.getjTextAreaOpis().getText().trim();
-                Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
+                //Autor autor = (Autor) dkf.getjComboBoxAutori().getSelectedItem();
                 ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
                 List<Primerak> primerci = mtp.getLista();
                 Knjiga k = new Knjiga(sifraKnjige, naziv, opis, primerci);
@@ -141,11 +148,14 @@ public class DodajKnjiguController {
 
     private void popuniComboBoxeve() {
         List<Autor> autori = Komunikacija.getInstance().ucitajAutore();
-        dkf.getjComboBoxAutori().removeAllItems();
-        dkf.getjComboBoxIzdavaci().removeAllItems();
+        DefaultListModel<Autor> model = new DefaultListModel<>();
+        dkf.getjListAutori().removeAll();
         for (Autor a : autori) {
-            dkf.getjComboBoxAutori().addItem(a);
+            model.addElement(a);
         }
+        dkf.getjListAutori().setModel(model);
+
+        dkf.getjComboBoxIzdavaci().removeAllItems();
         List<Izdavac> izdavaci = Komunikacija.getInstance().ucitajIzdavace();
         for (Izdavac i : izdavaci) {
             dkf.getjComboBoxIzdavaci().addItem(i);

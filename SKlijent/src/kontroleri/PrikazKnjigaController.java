@@ -53,6 +53,7 @@ public class PrikazKnjigaController {
             model.addElement(a);
         }
         pkf.getjListAutori().setModel(model);
+        
         List<Knjiga> knjige = Komunikacija.getInstance().ucitajKnjige();
         ModelTabeleKnjige mtk = new ModelTabeleKnjige(knjige);
         pkf.getjTableKnjige().setModel(mtk);

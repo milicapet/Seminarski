@@ -86,6 +86,7 @@ public class DodajClanaController {
                 dcf.setTitle("Izmeni člana forma");
                 Clan c = (Clan) Cordinator.getInstance().vratiParam("clan");
                 dcf.getjTextFieldBrClanskeKarte().setText(String.valueOf(c.getBrojClanskeKarte()));
+                dcf.getjTextFieldBrClanskeKarte().setEnabled(false);
                 dcf.getjTextFieldIme().setText(c.getIme());
                 dcf.getjTextFieldPrezime().setText(c.getPrezime());
                 dcf.getjTextFieldAdresa().setText(c.getAdresa());

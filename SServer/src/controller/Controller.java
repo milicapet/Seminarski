@@ -21,6 +21,7 @@ import operacija.clanovi.ObrisiClanaSO;
 import operacija.clanovi.UcitajClanoveSO;
 import operacija.izdavaci.UcitajIzdavaceSO;
 import operacija.knjige.IzmeniKnjiguSO;
+import operacija.knjige.KreirajAutorKnjigaSO;
 import operacija.knjige.KreirajKnjiguSO;
 import operacija.knjige.UcitajKnjigeSO;
 import operacija.knjige.primerci.IzmeniPrimerakSO;
@@ -160,6 +161,11 @@ public class Controller {
     public void izmeniPozajmicu(Pozajmica poz) throws Exception {
         IzmeniPozajmicuSO operacija = new IzmeniPozajmicuSO();
         operacija.izvrsi(poz, null);
+    }
+
+    public void dodajAutoreZaKnjigu(List<AutorKnjiga> ak) throws Exception {
+        KreirajAutorKnjigaSO operacija = new KreirajAutorKnjigaSO();
+        operacija.izvrsi(ak, null);
     }
 
 }

@@ -111,7 +111,7 @@ public class Komunikacija {
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
         knjige = (List<Knjiga>) odg.getOdgovor();
-        return knjige;        
+        return knjige;
     }
 
     public List<Primerak> ucitajPrimerke(int sifraKnjige) {
@@ -120,7 +120,7 @@ public class Komunikacija {
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
         primerci = (List<Primerak>) odg.getOdgovor();
-        return primerci;                
+        return primerci;
     }
 
     public List<Autor> ucitajAutore() {
@@ -129,7 +129,7 @@ public class Komunikacija {
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
         autori = (List<Autor>) odg.getOdgovor();
-        return autori;  
+        return autori;
     }
 
     public List<Izdavac> ucitajIzdavace() {
@@ -138,7 +138,7 @@ public class Komunikacija {
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
         izdavaci = (List<Izdavac>) odg.getOdgovor();
-        return izdavaci;  
+        return izdavaci;
     }
 
     public void dodajKnjigu(Knjiga k) {
@@ -174,7 +174,7 @@ public class Komunikacija {
             Cordinator.getInstance().osveziFormuPrikazClanova();
         } else {
             System.out.println("Greska u izmeni");
-        }        
+        }
     }
 
     public void dodajPrimerak(Primerak p) {
@@ -205,7 +205,7 @@ public class Komunikacija {
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
         autorKnjige = (List<AutorKnjiga>) odg.getOdgovor();
-        return autorKnjige;  
+        return autorKnjige;
     }
 
     public List<Pozajmica> ucitajPozajmice() {
@@ -214,7 +214,7 @@ public class Komunikacija {
         posiljalac.posalji(zahtev);
         Odgovor odg = (Odgovor) primalac.primi();
         pozajmice = (List<Pozajmica>) odg.getOdgovor();
-        return pozajmice;  
+        return pozajmice;
     }
 
     public void obrisiPozajmicu(Pozajmica p) throws Exception {
@@ -250,6 +250,17 @@ public class Komunikacija {
             //Cordinator.getInstance().osveziFormuPrikazClanova();
         } else {
             System.out.println("Greska u izmeni");
+        }
+    }
+
+    public void dodajAutoreZaKnjigu(List<AutorKnjiga> autorKnjigaLista) {
+        Zahtev zahtev = new Zahtev(Operacije.DODAJ_AUTORE_ZA_KNJIGU, autorKnjigaLista);
+        posiljalac.posalji(zahtev);
+        Odgovor odg = (Odgovor) primalac.primi();
+        if (odg.getOdgovor() == null) {
+            System.out.println("Uspesno dodato");
+        } else {
+            System.out.println("Greska u dodavanju");
         }
     }
 

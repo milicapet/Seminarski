@@ -29,5 +29,6 @@ public interface Operacije {
     public static final int OBRISI_POZAJMICU = 17;
     public static final int DODAJ_POZAJMICU = 18;
     public static final int IZMENI_POZAJMICU = 19;
+    public static final int DODAJ_AUTORE_ZA_KNJIGU = 20;
 
 }
