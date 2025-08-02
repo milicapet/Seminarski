@@ -63,7 +63,7 @@ public class PrikazClanovaController {
             public void actionPerformed(ActionEvent e) {
                 int selRed = pcf.getjTableClanovi().getSelectedRow();
                 if (selRed == -1) {
-                    JOptionPane.showMessageDialog(pcf, "Sistem ne može da izmeni člana", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(pcf, "Sistem ne može da učita člana", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
                 } else {
                     ModelTabeleClan mtc = (ModelTabeleClan) pcf.getjTableClanovi().getModel();
                     Clan c = mtc.getLista().get(selRed);
@@ -80,9 +80,14 @@ public class PrikazClanovaController {
                 String prezime = pcf.getjTextFieldPrezime().getText().trim();
                 String adresa = pcf.getjTextFieldAdresa().getText().trim();
                 String brTel = pcf.getjTextFieldBrTel().getText().trim();
-                System.out.println("brCLanskeKarte " + brClanskeKarte + "DUZINA STRINGA"+brClanskeKarte.length());
+                System.out.println("brCLanskeKarte " + brClanskeKarte + "DUZINA STRINGA" + brClanskeKarte.length());
                 ModelTabeleClan mtc = (ModelTabeleClan) pcf.getjTableClanovi().getModel();
-                mtc.pretrazi(brClanskeKarte, ime, prezime, adresa, brTel);
+                List<Clan> filtriranaLista = mtc.pretrazi(brClanskeKarte, ime, prezime, adresa, brTel);
+                if (filtriranaLista.size() != 0) {
+                    JOptionPane.showMessageDialog(pcf, "Sistem je našao članove po zadatoj vrednosti", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(pcf, "Sistem ne može da nađe članove po zadatoj vrednosti", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         pcf.addBtnResetujActionListener(new ActionListener() {

@@ -40,7 +40,6 @@ public class LoginOperacija extends ApstraktnaGenerickaOperacija {
         } else {
             bibliotekar = null;
         }
-
     }
 
 }

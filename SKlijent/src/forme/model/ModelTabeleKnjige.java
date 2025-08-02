@@ -20,7 +20,7 @@ public class ModelTabeleKnjige extends AbstractTableModel {
 
     List<Knjiga> lista;
     List<AutorKnjiga> autoriKnjige;
-    String[] kolone = {"sifraKnjige", "naziv", "opis"};
+    String[] kolone = {"Šifra knjige", "Naziv", "Opis"};
 
     public ModelTabeleKnjige(List<Knjiga> lista) {
         this.lista = lista;
@@ -65,7 +65,7 @@ public class ModelTabeleKnjige extends AbstractTableModel {
         this.lista = lista;
     }
 
-    public void pretrazi(String sifraKnjige, String naziv, List<Autor> autori) {
+    public List<Knjiga> pretrazi(String sifraKnjige, String naziv, List<Autor> autori) {
         System.out.println("LISTA ORIGINAL" + lista);
         List<Knjiga> filtriraneKnjige = new ArrayList<>();
         for (Knjiga k : lista) {
@@ -103,6 +103,7 @@ public class ModelTabeleKnjige extends AbstractTableModel {
         lista = filtriraneKnjige;
         System.out.println("FILTRIRANA LISTA " + filtriraneKnjige);
         fireTableDataChanged();
+        return lista;
         /*List<Knjiga> filteredList = lista.stream()
                 .filter(k -> (sifraKnjige == null || sifraKnjige.isEmpty()) || (String.valueOf(k.getSifraKnjige())).contains(sifraKnjige))
                 .filter(k -> (naziv == null || naziv.isEmpty() || k.getNaziv().toLowerCase().contains(naziv.toLowerCase())))

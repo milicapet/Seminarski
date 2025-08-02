@@ -4,9 +4,6 @@
  */
 package forme;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import server.Server;
 
 /**
@@ -27,7 +24,6 @@ public class ServerskaForma extends javax.swing.JFrame {
         server = new Server();
         jLabelStatus.setText("");
         jButtonZAUSTAVI.setEnabled(false);
-
     }
 
     /**

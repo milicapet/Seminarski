@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModelTabelePrimerak extends AbstractTableModel {
 
     List<Primerak> lista;
-    String[] kolone = {"sifraPrimerka", "godinaIzdanja", "brojIzdanja", "izdavac"};
+    String[] kolone = {"Šifra primerka", "Godina izdanja", "Broj izdanja", "Izdavač"};
 
     public ModelTabelePrimerak(List<Primerak> lista) {
         this.lista = lista;

@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModelTabeleClan extends AbstractTableModel {
 
     List<Clan> lista;
-    String[] kolone = {"brojClanskeKarte", "ime", "prezime", "adresa", "brojTelefona"};
+    String[] kolone = {"Broj članske karte", "Ime", "Prezime", "Adresa", "Broj telefona"};
 
     public ModelTabeleClan(List<Clan> lista) {
         this.lista = lista;
@@ -62,7 +62,7 @@ public class ModelTabeleClan extends AbstractTableModel {
         return kolone[column];
     }
 
-    public void pretrazi(String brClanskeKarte, String ime, String prezime, String adresa, String brTel) {
+    public List<Clan> pretrazi(String brClanskeKarte, String ime, String prezime, String adresa, String brTel) {
         System.out.println("LISTA ORIGINAL" + lista);
         List<Clan> filteredList = lista.stream()
                 .filter(c -> (brClanskeKarte == null || brClanskeKarte.isEmpty()) || (String.valueOf(c.getBrojClanskeKarte())).contains(brClanskeKarte))
@@ -74,6 +74,7 @@ public class ModelTabeleClan extends AbstractTableModel {
         lista = filteredList;
         System.out.println("FILTRIRANA LISTA " + filteredList);
         fireTableDataChanged();
+        return lista;
     }
 
 }

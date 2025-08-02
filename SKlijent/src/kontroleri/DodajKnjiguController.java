@@ -27,14 +27,14 @@ import komunikacija.Komunikacija;
  * @author milic
  */
 public class DodajKnjiguController {
-
+    
     private final DodajKnjiguForma dkf;
-
+    
     public DodajKnjiguController(DodajKnjiguForma dkf) {
         this.dkf = dkf;
         addActionListeners();
     }
-
+    
     private void addActionListeners() {
         dkf.addBtnDodajPrimerakActionListener(new ActionListener() {
             @Override
@@ -81,10 +81,10 @@ public class DodajKnjiguController {
                 try {
                     Komunikacija.getInstance().dodajKnjigu(k);
                     Komunikacija.getInstance().dodajAutoreZaKnjigu(autorKnjigaLista);
-                    JOptionPane.showMessageDialog(dkf, "Sistem je kreirao knjigu.", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(dkf, "Sistem je zapamtio knjigu.", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                     dkf.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Sistem ne može da kreira knjigu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti knjigu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -109,22 +109,28 @@ public class DodajKnjiguController {
                     Cordinator.getInstance().osveziFormuPrikazKnjiga();
                     dkf.dispose();
                 } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti knjigu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                     ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Sistem ne može da izmeni knjigu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
-
+        
     }
-
+    
     public void otvoriFormu(FormaMod mod) {
+        if (mod == FormaMod.DODAJ) {
+            JOptionPane.showMessageDialog(null, "Sistem je kreirao knjigu", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (mod == FormaMod.IZMENI) {
+            JOptionPane.showMessageDialog(null, "Sistem je učitao knjigu", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+        }
         ModelTabelePrimerak mtp = new ModelTabelePrimerak(new ArrayList<>());
         dkf.getjTablePrimerci().setModel(mtp);
         popuniComboBoxeve();
         pripremiFormu(mod);
         dkf.setVisible(true);
     }
-
+    
     private void pripremiFormu(FormaMod mod) {
         switch (mod) {
             case DODAJ:
@@ -140,9 +146,10 @@ public class DodajKnjiguController {
                 dkf.setTitle("Izmeni knjigu forma");
                 Knjiga k = (Knjiga) Cordinator.getInstance().vratiParam("knjiga_za_izmenu");
                 dkf.getjTextFieldSifraKnjige().setText(String.valueOf(k.getSifraKnjige()));
+                dkf.getjTextFieldSifraKnjige().setEnabled(false);
                 dkf.getjTextFieldNaziv().setText(k.getNaziv());
                 dkf.getjTextAreaOpis().setText(k.getOpis());
-
+                
                 DefaultListModel<Autor> model = (DefaultListModel<Autor>) dkf.getjListAutori().getModel();
                 List<Autor> autoriKnjige = Komunikacija.getInstance().ucitajAutoreZaKnjigu(k.getSifraKnjige());
                 int[] indeksiT = new int[model.size()];
@@ -155,16 +162,16 @@ public class DodajKnjiguController {
                 }
                 int[] indeksi = Arrays.copyOf(indeksiT, brojac);
                 dkf.getjListAutori().setSelectedIndices(indeksi);
-
+                
                 ModelTabelePrimerak mtp = new ModelTabelePrimerak(k.getPrimerci());
                 dkf.getjTablePrimerci().setModel(mtp);
-
+                
                 break;
             default:
                 throw new AssertionError();
         }
     }
-
+    
     private void popuniComboBoxeve() {
         List<Autor> autori = Komunikacija.getInstance().ucitajAutore();
         DefaultListModel<Autor> model = new DefaultListModel<>();
@@ -173,12 +180,12 @@ public class DodajKnjiguController {
             model.addElement(a);
         }
         dkf.getjListAutori().setModel(model);
-
+        
         dkf.getjComboBoxIzdavaci().removeAllItems();
         List<Izdavac> izdavaci = Komunikacija.getInstance().ucitajIzdavace();
         for (Izdavac i : izdavaci) {
             dkf.getjComboBoxIzdavaci().addItem(i);
         }
     }
-
+    
 }

@@ -80,7 +80,6 @@ public class FormaKonfiguracijaPort extends javax.swing.JDialog {
     private void jButtonSacuvajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajActionPerformed
         int port;
         try {
-
             port = Integer.parseInt(jTextFieldPort.getText().trim());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "GREŠKA! Port mora biti broj! ", "GREŠKA!", JOptionPane.ERROR_MESSAGE);

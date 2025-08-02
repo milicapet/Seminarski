@@ -51,7 +51,7 @@ public class PrikazPozajmicaController {
             public void actionPerformed(ActionEvent e) {
                 int selRed = ppf.getjTablePozajmice().getSelectedRow();
                 if (selRed == -1) {
-                    JOptionPane.showMessageDialog(ppf, "Nije odabrana pozajmica za brisanje", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(ppf, "Sistem ne može da učita pozajmicu", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
                 } else {
                     ModelTabelePozajmica mtp = (ModelTabelePozajmica) ppf.getjTablePozajmice().getModel();
                     Pozajmica p = mtp.getLista().get(selRed);
@@ -60,7 +60,7 @@ public class PrikazPozajmicaController {
                         JOptionPane.showMessageDialog(null, "Sistem je izbrisao podatke o pozajmici", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                         mtp.obrisiPozajmicu(p);
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "Sistem ne može da izbriše primerak", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Sistem ne može da izbriše pozajmicu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -70,7 +70,7 @@ public class PrikazPozajmicaController {
             public void actionPerformed(ActionEvent e) {
                 int selRed = ppf.getjTablePozajmice().getSelectedRow();
                 if (selRed == -1) {
-                    JOptionPane.showMessageDialog(ppf, "Nije odabrana pozajmica za izmenu", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(ppf, "Sistem ne može da učita pozajmicu", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
                 } else {
                     ModelTabelePozajmica mtp = (ModelTabelePozajmica) ppf.getjTablePozajmice().getModel();
                     Pozajmica p = mtp.getLista().get(selRed);

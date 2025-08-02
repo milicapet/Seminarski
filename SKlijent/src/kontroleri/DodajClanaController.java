@@ -30,18 +30,23 @@ public class DodajClanaController {
         dcf.addBtnDodajActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int brClanskeKarte = Integer.parseInt(dcf.getjTextFieldBrClanskeKarte().getText().trim());
-                String ime = dcf.getjTextFieldIme().getText().trim();
-                String prezime = dcf.getjTextFieldPrezime().getText().trim();
-                String adresa = dcf.getjTextFieldAdresa().getText().trim();
-                String brTel = dcf.getjTextFieldBrTel().getText().trim();
-                Clan c = new Clan(brClanskeKarte, ime, prezime, adresa, brTel);
                 try {
+                    String brClanKarte = dcf.getjTextFieldBrClanskeKarte().getText().trim();
+                    if (brClanKarte.isEmpty()) {
+                        throw new IllegalArgumentException("Broj clanske karte ne sme biti prazan! ");
+                    }
+                    int brClanskeKarte = Integer.parseInt(dcf.getjTextFieldBrClanskeKarte().getText().trim());
+                    String ime = dcf.getjTextFieldIme().getText().trim();
+                    String prezime = dcf.getjTextFieldPrezime().getText().trim();
+                    String adresa = dcf.getjTextFieldAdresa().getText().trim();
+                    String brTel = dcf.getjTextFieldBrTel().getText().trim();
+                    Clan c = new Clan(brClanskeKarte, ime, prezime, adresa, brTel);
+
                     Komunikacija.getInstance().dodajClana(c);
-                    JOptionPane.showMessageDialog(dcf, "Sistem je kreirao člana", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(dcf, "Sistem je zapamtio člana", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                     dcf.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Sistem ne može da kreira člana", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti člana", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -59,7 +64,7 @@ public class DodajClanaController {
                     JOptionPane.showMessageDialog(null, "Sistem je zapamtio člana", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                     dcf.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Sistem ne može da izmeni člana", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti člana", "GREŠKA", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -67,6 +72,12 @@ public class DodajClanaController {
     }
 
     public void otvoriFormu(FormaMod mod) {
+        if (mod == FormaMod.DODAJ) {
+            JOptionPane.showMessageDialog(null, "Sistem je kreirao člana", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (mod == FormaMod.IZMENI) {
+            JOptionPane.showMessageDialog(null, "Sistem je učitao člana", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+        }
         pripremiFormu(mod);
         dcf.setVisible(true);
     }

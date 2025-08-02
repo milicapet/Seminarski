@@ -53,7 +53,7 @@ public class PrikazKnjigaController {
             model.addElement(a);
         }
         pkf.getjListAutori().setModel(model);
-        
+
         List<Knjiga> knjige = Komunikacija.getInstance().ucitajKnjige();
         ModelTabeleKnjige mtk = new ModelTabeleKnjige(knjige);
         pkf.getjTableKnjige().setModel(mtk);
@@ -93,7 +93,7 @@ public class PrikazKnjigaController {
                     ModelTabelePrimerak mtp = (ModelTabelePrimerak) pkf.getjTablePrimerci().getModel();
                     Primerak p = mtp.getLista().get(selRed);
                     Cordinator.getInstance().dodajParam("primerak", p);
-                    Cordinator.getInstance().otvoriIzmeniPrimerakFormu();                    
+                    Cordinator.getInstance().otvoriIzmeniPrimerakFormu();
                 }
             }
         });
@@ -101,7 +101,7 @@ public class PrikazKnjigaController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //Cordinator.getInstance().dodajParam("primerak", p);
-                Cordinator.getInstance().otvoriDodajPrimerakFormu();         
+                Cordinator.getInstance().otvoriDodajPrimerakFormu();
             }
         });
         pkf.addBtnIzmeniKnjiguActionListener(new ActionListener() {
@@ -109,12 +109,12 @@ public class PrikazKnjigaController {
             public void actionPerformed(ActionEvent e) {
                 int selRed = pkf.getjTableKnjige().getSelectedRow();
                 if (selRed == -1) {
-                    JOptionPane.showMessageDialog(pkf, "Nije odabrana knjiga za izmenu", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(pkf, "Sistem ne može da učita knjigu", "GREŠKA!", JOptionPane.ERROR_MESSAGE);
                 } else {
                     ModelTabeleKnjige mtk = (ModelTabeleKnjige) pkf.getjTableKnjige().getModel();
                     Knjiga k = mtk.getLista().get(selRed);
-                    List<Primerak> primerci =Komunikacija.getInstance().ucitajPrimerke(k.getSifraKnjige());
-                    k.setPrimerci(primerci);                    
+                    List<Primerak> primerci = Komunikacija.getInstance().ucitajPrimerke(k.getSifraKnjige());
+                    k.setPrimerci(primerci);
                     Cordinator.getInstance().dodajParam("knjiga_za_izmenu", k);
                     Cordinator.getInstance().otvoriDodajKnjiguFormu(FormaMod.IZMENI);
                 }
@@ -127,7 +127,12 @@ public class PrikazKnjigaController {
                 String naziv = pkf.getjTextFieldNaziv().getText().trim();
                 List<Autor> autori = pkf.getjListAutori().getSelectedValuesList();
                 ModelTabeleKnjige mtk = (ModelTabeleKnjige) pkf.getjTableKnjige().getModel();
-                mtk.pretrazi(sifraKnjige, naziv, autori);
+                List<Knjiga> filtriranaLista = mtk.pretrazi(sifraKnjige, naziv, autori);
+                if (filtriranaLista.size() != 0) {
+                    JOptionPane.showMessageDialog(pkf, "Sistem je našao knjige po zadatoj vrednosti", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(pkf, "Sistem ne može da nađe knjige po zadatoj vrednosti", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         pkf.addBtnResetujActionListener(new ActionListener() {

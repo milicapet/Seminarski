@@ -17,7 +17,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModelTabelePozajmica extends AbstractTableModel {
 
     List<Pozajmica> lista;
-    String[] kolone = {"sifraKnjige", "sifraPrimerka", "brojClanskeKarte", "datumUzimanja", "datumVracanja"};
+    String[] kolone = {"Šifra knjige", "Šifra primerka", "Broj članske karte", "Datum uzimanja", "Datum vraćanja"};
 
     public ModelTabelePozajmica(List<Pozajmica> lista) {
         this.lista = lista;
