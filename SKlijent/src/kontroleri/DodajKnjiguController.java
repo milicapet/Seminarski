@@ -27,28 +27,36 @@ import komunikacija.Komunikacija;
  * @author milic
  */
 public class DodajKnjiguController {
-    
+
     private final DodajKnjiguForma dkf;
-    
+
     public DodajKnjiguController(DodajKnjiguForma dkf) {
         this.dkf = dkf;
         addActionListeners();
     }
-    
+
     private void addActionListeners() {
         dkf.addBtnDodajPrimerakActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
-                int sifraPrimerka = Integer.parseInt(dkf.getjTextFieldSifraPrimerka().getText().trim());
-                int godIzdanja = Integer.parseInt(dkf.getjTextFieldGodinaIzdanja().getText().trim());
-                int brIzdanja = Integer.parseInt(dkf.getjTextFieldBrojIzdanja().getText().trim());
-                Izdavac i = (Izdavac) dkf.getjComboBoxIzdavaci().getSelectedItem();
-                Knjiga k = new Knjiga();
-                k.setSifraKnjige(sifraKnjige);
-                Primerak p = new Primerak(k, sifraPrimerka, godIzdanja, brIzdanja, i);
-                ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
-                mtp.dodajPrimerak(p);
+                try {
+                    String sifKnj = dkf.getjTextFieldSifraKnjige().getText().trim();
+                    if (sifKnj.isEmpty()) {
+                        throw new IllegalArgumentException("Šifra knjige ne sme biti prazna! ");
+                    }
+                    int sifraKnjige = Integer.parseInt(dkf.getjTextFieldSifraKnjige().getText().trim());
+                    int sifraPrimerka = Integer.parseInt(dkf.getjTextFieldSifraPrimerka().getText().trim());
+                    int godIzdanja = Integer.parseInt(dkf.getjTextFieldGodinaIzdanja().getText().trim());
+                    int brIzdanja = Integer.parseInt(dkf.getjTextFieldBrojIzdanja().getText().trim());
+                    Izdavac i = (Izdavac) dkf.getjComboBoxIzdavaci().getSelectedItem();
+                    Knjiga k = new Knjiga();
+                    k.setSifraKnjige(sifraKnjige);
+                    Primerak p = new Primerak(k, sifraPrimerka, godIzdanja, brIzdanja, i);
+                    ModelTabelePrimerak mtp = (ModelTabelePrimerak) dkf.getjTablePrimerci().getModel();
+                    mtp.dodajPrimerak(p);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti knjigu", "GREŠKA", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         dkf.addBtnObrisiPrimerakActionListener(new ActionListener() {
@@ -114,9 +122,9 @@ public class DodajKnjiguController {
                 }
             }
         });
-        
+
     }
-    
+
     public void otvoriFormu(FormaMod mod) {
         if (mod == FormaMod.DODAJ) {
             JOptionPane.showMessageDialog(null, "Sistem je kreirao knjigu", "USPEH", JOptionPane.INFORMATION_MESSAGE);
@@ -130,7 +138,7 @@ public class DodajKnjiguController {
         pripremiFormu(mod);
         dkf.setVisible(true);
     }
-    
+
     private void pripremiFormu(FormaMod mod) {
         switch (mod) {
             case DODAJ:
@@ -149,7 +157,7 @@ public class DodajKnjiguController {
                 dkf.getjTextFieldSifraKnjige().setEnabled(false);
                 dkf.getjTextFieldNaziv().setText(k.getNaziv());
                 dkf.getjTextAreaOpis().setText(k.getOpis());
-                
+
                 DefaultListModel<Autor> model = (DefaultListModel<Autor>) dkf.getjListAutori().getModel();
                 List<Autor> autoriKnjige = Komunikacija.getInstance().ucitajAutoreZaKnjigu(k.getSifraKnjige());
                 int[] indeksiT = new int[model.size()];
@@ -162,16 +170,16 @@ public class DodajKnjiguController {
                 }
                 int[] indeksi = Arrays.copyOf(indeksiT, brojac);
                 dkf.getjListAutori().setSelectedIndices(indeksi);
-                
+
                 ModelTabelePrimerak mtp = new ModelTabelePrimerak(k.getPrimerci());
                 dkf.getjTablePrimerci().setModel(mtp);
-                
+
                 break;
             default:
                 throw new AssertionError();
         }
     }
-    
+
     private void popuniComboBoxeve() {
         List<Autor> autori = Komunikacija.getInstance().ucitajAutore();
         DefaultListModel<Autor> model = new DefaultListModel<>();
@@ -180,12 +188,12 @@ public class DodajKnjiguController {
             model.addElement(a);
         }
         dkf.getjListAutori().setModel(model);
-        
+
         dkf.getjComboBoxIzdavaci().removeAllItems();
         List<Izdavac> izdavaci = Komunikacija.getInstance().ucitajIzdavace();
         for (Izdavac i : izdavaci) {
             dkf.getjComboBoxIzdavaci().addItem(i);
         }
     }
-    
+
 }

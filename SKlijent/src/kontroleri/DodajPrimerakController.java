@@ -53,7 +53,7 @@ public class DodajPrimerakController {
                 dpf.getjButtonIzmeni().setEnabled(true);
                 dpf.setTitle("Izmeni primerak forma");
                 dpf.getjTextFieldSifraPrimerka().setText(String.valueOf(p.getSifraPrimerka()));
-                dpf.getjTextFieldBrIzdanja().setEnabled(false);
+                dpf.getjTextFieldSifraPrimerka().setEnabled(false);
                 dpf.getjTextFieldGodIzdanja().setText(String.valueOf(p.getGodinaIzdanja()));
                 dpf.getjTextFieldBrIzdanja().setText(String.valueOf(p.getBrojIzdanja()));
                 dpf.getJComboBoxIzdavac().setSelectedItem(p.getIzdavac());
@@ -76,17 +76,21 @@ public class DodajPrimerakController {
         dpf.addBtnDodajActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int sifraPrimerka = Integer.parseInt(dpf.getjTextFieldSifraPrimerka().getText().trim());
-                int godIzdanja = Integer.parseInt(dpf.getjTextFieldGodIzdanja().getText().trim());
-                int brIzdanja = Integer.parseInt(dpf.getjTextFieldBrIzdanja().getText().trim());
-                Izdavac izdavac = (Izdavac) dpf.getJComboBoxIzdavac().getSelectedItem();
-                Primerak p = new Primerak();
-                p.setSifraPrimerka(sifraPrimerka);
-                p.setGodinaIzdanja(godIzdanja);
-                p.setBrojIzdanja(brIzdanja);
-                p.setIzdavac(izdavac);
-
                 try {
+                    String sifPr = dpf.getjTextFieldSifraPrimerka().getText().trim();
+                    if (sifPr.isEmpty()) {
+                        throw new IllegalArgumentException("Šifra primerka ne sme biti prazna! ");
+                    }
+                    int sifraPrimerka = Integer.parseInt(dpf.getjTextFieldSifraPrimerka().getText().trim());
+                    int godIzdanja = Integer.parseInt(dpf.getjTextFieldGodIzdanja().getText().trim());
+                    int brIzdanja = Integer.parseInt(dpf.getjTextFieldBrIzdanja().getText().trim());
+                    Izdavac izdavac = (Izdavac) dpf.getJComboBoxIzdavac().getSelectedItem();
+                    Primerak p = new Primerak();
+                    p.setSifraPrimerka(sifraPrimerka);
+                    p.setGodinaIzdanja(godIzdanja);
+                    p.setBrojIzdanja(brIzdanja);
+                    p.setIzdavac(izdavac);
+
                     Komunikacija.getInstance().dodajPrimerak(p);
                     JOptionPane.showMessageDialog(dpf, "Sistem je kreirao primerak", "USPEH", JOptionPane.INFORMATION_MESSAGE);
                     dpf.dispose();

@@ -118,10 +118,13 @@ public class Primerak implements ApstraktniDomenskiObjekat {
             int godinaIzdanja = rs.getInt("primerak.godinaIzdanja");
             int brojIzdanja = rs.getInt("primerak.brojIzdanja");
 
-            int sifraIzdavaca = rs.getInt("izdavac.sifraIzdavaca");
-            String naziv = rs.getString("izdavac.naziv");
-            String adresa = rs.getString("izdavac.adresa");
-            Izdavac izdavac = new Izdavac(sifraIzdavaca, naziv, adresa);
+            int sifraIzdavaca = rs.getInt("primerak.sifraIzdavaca");
+            /*String naziv = rs.getString("izdavac.naziv");
+            String adresa = rs.getString("izdavac.adresa");*/
+            Izdavac izdavac = new Izdavac();
+            izdavac.setSifraIzdavaca(sifraIzdavaca);
+            /*izdavac.setNaziv(naziv);
+            izdavac.setAdresa(adresa);*/
 
             Primerak p = new Primerak();
             p.setKnjiga(k);

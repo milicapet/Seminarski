@@ -5,6 +5,7 @@
 package operacija.knjige;
 
 import domen.Knjiga;
+import domen.Primerak;
 import java.util.List;
 import operacija.ApstraktnaGenerickaOperacija;
 
@@ -27,6 +28,12 @@ public class UcitajKnjigeSO extends ApstraktnaGenerickaOperacija {
     @Override
     protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
         knjige = broker.getAll(param, kljuc);
+        for (Knjiga k : knjige) {
+            String uslov = " JOIN knjiga ON primerak.sifraKnjige = knjiga.sifraKnjige"
+                    + " WHERE primerak.sifraKnjige = " + k.getSifraKnjige() ;
+            List<Primerak> primerci = broker.getAll(new Primerak(), uslov);
+            k.setPrimerci(primerci);
+        }
     }
 
 }

@@ -58,6 +58,9 @@ public class DodajPozajmicuController {
                     Primerak primerak = (Primerak) dpf.getjComboBoxPrimerci().getSelectedItem();
                     System.out.println("PRIMERAK IZ CMB " + primerak + " Sif Knjige " + primerak.getKnjiga().getSifraKnjige());
                     String datUzStr = dpf.getjTextFieldDatUzimanja().getText().trim();
+                    if (datUzStr.isEmpty()) {
+                        throw new IllegalArgumentException("Datum uzimanja ne sme biti prazna! ");
+                    }
                     String datVrStr = dpf.getjTextFieldDatVracanja().getText().trim();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
                     Date datumUzimanja = sdf.parse(datUzStr);

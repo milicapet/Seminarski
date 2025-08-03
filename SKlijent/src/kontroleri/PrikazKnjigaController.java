@@ -151,7 +151,8 @@ public class PrikazKnjigaController {
                 if (red != -1) {
                     ModelTabeleKnjige mtk = (ModelTabeleKnjige) pkf.getjTableKnjige().getModel();
                     Knjiga k = mtk.getLista().get(red);
-                    List<Primerak> primerci = Komunikacija.getInstance().ucitajPrimerke(k.getSifraKnjige());
+                    List<Primerak> primerci = k.getPrimerci();
+                    //List<Primerak> primerci = Komunikacija.getInstance().ucitajPrimerke(k.getSifraKnjige());
                     ModelTabelePrimerak mtp = new ModelTabelePrimerak(primerci);
                     pkf.getjTablePrimerci().setModel(mtp);
                 }
